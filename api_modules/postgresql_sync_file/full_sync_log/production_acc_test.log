@@ -1,0 +1,205 @@
+2025-11-07 12:18:37,718 - INFO - ================================================================================
+2025-11-07 12:18:37,719 - INFO - PRODUCTION ACC FULL SYNC TEST
+2025-11-07 12:18:37,719 - INFO - ================================================================================
+2025-11-07 12:18:37,719 - INFO - Project ID: b.1eea4119-3553-4167-b93d-3a3d5d07d33d
+2025-11-07 12:18:37,719 - INFO - Test Start: 2025-11-07 12:18:37
+2025-11-07 12:18:37,720 - INFO - [STEP 1] Getting authentication...
+2025-11-07 12:18:37,985 - INFO - [AUTH] Successfully obtained access token from existing system
+2025-11-07 12:18:37,986 - INFO - [AUTH] Token expires in 58 minutes
+2025-11-07 12:18:37,986 - INFO - [STEP 2] Initializing V2 sync manager...
+2025-11-07 12:18:38,071 - WARNING - [STEP 2] V2 sync manager not available, falling back to V1...
+2025-11-07 12:18:38,125 - INFO - [STEP 2] V1 sync manager initialized successfully
+2025-11-07 12:18:38,126 - INFO - [STEP 3] Starting PRODUCTION full sync...
+2025-11-07 12:18:38,126 - INFO - [STEP 3] Parameters:
+2025-11-07 12:18:38,126 - INFO - [STEP 3]   - project_id: b.1eea4119-3553-4167-b93d-3a3d5d07d33d
+2025-11-07 12:18:38,126 - INFO - [STEP 3]   - max_depth: 10
+2025-11-07 12:18:38,127 - INFO - [STEP 3]   - include_custom_attributes: True
+2025-11-07 12:18:38,127 - INFO - 🚀 开始优化全量同步: 项目 b.1eea4119-3553-4167-b93d-3a3d5d07d33d
+2025-11-07 12:18:38,127 - INFO - 🚀 开始优化全量同步 V2: 项目 b.1eea4119-3553-4167-b93d-3a3d5d07d33d
+2025-11-07 12:18:38,127 - INFO - 正在创建Neon PostgreSQL连接池: postgresql://neondb_owner:***@ep-soft-mountain-a4jqpy5e-pooler.us-east-1.aws.neon.tech:5432/neondb?sslmode=require&channel_binding=require
+2025-11-07 12:18:40,984 - INFO - Neon PostgreSQL连接池创建成功
+2025-11-07 12:18:41,430 - INFO - Neon PostgreSQL版本: PostgreSQL 17.5 (6bc9ef8) on aarch64-unknown-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 1...
+2025-11-07 12:18:42,425 - INFO - 数据库: neondb, 用户: neondb_owner
+2025-11-07 12:18:47,313 - INFO - 🧹 数据清理完成: 文件夹(34), 文件(27), 版本(31), 属性定义(3), 属性值(7)
+2025-11-07 12:18:47,314 - INFO - 📁 获取项目顶级文件夹...
+2025-11-07 12:18:49,328 - INFO - 📂 找到 1 个顶级文件夹
+2025-11-07 12:18:49,329 - INFO - 🔄 开始BFS递归收集数据...
+2025-11-07 12:19:02,206 - INFO - 📊 BFS收集完成: 34 文件夹, 28 文件
+2025-11-07 12:19:02,208 - INFO - Getting file versions and custom attributes...
+2025-11-07 12:19:02,209 - INFO - Batch retrieving file details: 28 files
+2025-11-07 12:19:17,443 - INFO - File details retrieval completed: 28 files
+2025-11-07 12:19:17,444 - INFO - 💾 开始批量数据库操作...
+2025-11-07 12:19:43,926 - INFO - File versions sync completed: 32 versions
+2025-11-07 12:19:43,926 - INFO - Found 7 attribute definitions and 7 attribute values
+2025-11-07 12:19:45,489 - INFO - Custom attribute definitions sync completed: 3 definitions
+2025-11-07 12:19:46,609 - INFO - Retrieved 3 attribute ID mappings
+2025-11-07 12:19:46,610 - INFO - Processing 7 valid attribute values out of 7
+2025-11-07 12:19:49,192 - INFO - Custom attribute values sync completed: 7 values
+2025-11-07 12:19:50,027 - INFO - ✅ V2全量同步完成: {'status': 'success', 'folders_synced': 34, 'files_synced': 28, 'versions_synced': 32, 'custom_attrs_synced': 7, 'total_time_seconds': 71.9, 'performance_stats': {'api_calls': 68, 'api_calls_saved': 0, 'smart_skips': 0, 'batch_operations': 6, 'concurrent_operations': 0, 'memory_peak_mb': 0, 'processing_time': 0}, 'architecture_version': 'v2'}
+2025-11-07 12:19:50,027 - INFO - [STEP 4] Analyzing sync results...
+2025-11-07 12:19:50,028 - INFO - [STEP 5] Generating production test report...
+2025-11-07 12:19:50,029 - INFO - [SAVE] Results saved to: production_acc_sync_test_1762489190.json
+2025-11-07 12:34:39,702 - INFO - ================================================================================
+2025-11-07 12:34:39,702 - INFO - PRODUCTION ACC FULL SYNC TEST
+2025-11-07 12:34:39,702 - INFO - ================================================================================
+2025-11-07 12:34:39,703 - INFO - Project ID: b.1eea4119-3553-4167-b93d-3a3d5d07d33d
+2025-11-07 12:34:39,703 - INFO - Test Start: 2025-11-07 12:34:39
+2025-11-07 12:34:39,703 - INFO - [STEP 1] Getting authentication...
+2025-11-07 12:34:39,956 - INFO - [AUTH] Successfully obtained access token from existing system
+2025-11-07 12:34:39,957 - INFO - [AUTH] Token expires in 42 minutes
+2025-11-07 12:34:39,957 - INFO - [STEP 2] Initializing V2 sync manager...
+2025-11-07 12:34:40,103 - WARNING - [STEP 2] V2 sync manager not available, falling back to V1...
+2025-11-07 12:34:40,159 - INFO - [STEP 2] V1 sync manager initialized successfully
+2025-11-07 12:34:40,160 - INFO - [STEP 3] Starting PRODUCTION full sync...
+2025-11-07 12:34:40,160 - INFO - [STEP 3] Parameters:
+2025-11-07 12:34:40,160 - INFO - [STEP 3]   - project_id: b.1eea4119-3553-4167-b93d-3a3d5d07d33d
+2025-11-07 12:34:40,160 - INFO - [STEP 3]   - max_depth: 10
+2025-11-07 12:34:40,160 - INFO - [STEP 3]   - include_custom_attributes: True
+2025-11-07 12:34:40,161 - INFO - 🚀 开始优化全量同步: 项目 b.1eea4119-3553-4167-b93d-3a3d5d07d33d
+2025-11-07 12:34:40,161 - INFO - 🚀 开始优化全量同步 V2: 项目 b.1eea4119-3553-4167-b93d-3a3d5d07d33d
+2025-11-07 12:34:40,161 - INFO - 正在创建Neon PostgreSQL连接池: postgresql://neondb_owner:***@ep-soft-mountain-a4jqpy5e-pooler.us-east-1.aws.neon.tech:5432/neondb?sslmode=require&channel_binding=require
+2025-11-07 12:34:43,522 - INFO - Neon PostgreSQL连接池创建成功
+2025-11-07 12:34:43,978 - INFO - Neon PostgreSQL版本: PostgreSQL 17.5 (6bc9ef8) on aarch64-unknown-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 1...
+2025-11-07 12:34:44,872 - INFO - 数据库: neondb, 用户: neondb_owner
+2025-11-07 12:34:50,234 - INFO - 🧹 数据清理完成: 文件夹(34), 文件(28), 版本(32), 属性定义(3), 属性值(7)
+2025-11-07 12:34:50,234 - INFO - 📁 获取项目顶级文件夹...
+2025-11-07 12:34:52,506 - INFO - 📂 找到 1 个顶级文件夹
+2025-11-07 12:34:52,506 - INFO - 🔄 开始BFS递归收集数据...
+2025-11-07 12:35:05,393 - INFO - 📊 BFS收集完成: 34 文件夹, 29 文件
+2025-11-07 12:35:05,394 - INFO - Getting file versions and custom attributes...
+2025-11-07 12:35:05,394 - INFO - Batch retrieving file details: 29 files
+2025-11-07 12:35:21,437 - INFO - File details retrieval completed: 29 files
+2025-11-07 12:35:21,437 - INFO - 💾 开始批量数据库操作...
+2025-11-07 12:35:50,598 - INFO - File versions sync completed: 33 versions
+2025-11-07 12:35:50,599 - INFO - Found 7 attribute definitions and 7 attribute values
+2025-11-07 12:35:52,671 - INFO - Custom attribute definitions sync completed: 3 definitions
+2025-11-07 12:35:54,134 - INFO - Retrieved 3 attribute ID mappings
+2025-11-07 12:35:54,134 - INFO - Processing 7 valid attribute values out of 7
+2025-11-07 12:35:58,594 - INFO - Custom attribute values sync completed: 7 values
+2025-11-07 12:35:59,275 - INFO - ✅ V2全量同步完成: {'status': 'success', 'folders_synced': 34, 'files_synced': 29, 'versions_synced': 33, 'custom_attrs_synced': 7, 'total_time_seconds': 79.11, 'performance_stats': {'api_calls': 69, 'api_calls_saved': 0, 'smart_skips': 0, 'batch_operations': 6, 'concurrent_operations': 0, 'memory_peak_mb': 0, 'processing_time': 0}, 'architecture_version': 'v2'}
+2025-11-07 12:35:59,277 - INFO - [STEP 4] Analyzing sync results...
+2025-11-07 12:35:59,281 - INFO - [STEP 5] Generating production test report...
+2025-11-07 12:35:59,287 - INFO - [SAVE] Results saved to: production_acc_sync_test_1762490159.json
+2025-11-07 17:13:16,561 - INFO - ================================================================================
+2025-11-07 17:13:16,561 - INFO - PRODUCTION ACC FULL SYNC TEST
+2025-11-07 17:13:16,561 - INFO - ================================================================================
+2025-11-07 17:13:16,561 - INFO - Project ID: b.1eea4119-3553-4167-b93d-3a3d5d07d33d
+2025-11-07 17:13:16,562 - INFO - Test Start: 2025-11-07 17:13:16
+2025-11-07 17:13:16,562 - INFO - [STEP 1] Getting authentication...
+2025-11-07 17:13:17,071 - INFO - [AUTH] Successfully obtained access token from existing system
+2025-11-07 17:13:17,071 - INFO - [AUTH] Token expires in 29 minutes
+2025-11-07 17:13:17,071 - INFO - [STEP 2] Initializing V2 sync manager...
+2025-11-07 17:13:17,183 - WARNING - [STEP 2] V2 sync manager not available, falling back to V1...
+2025-11-07 17:13:17,248 - INFO - [STEP 2] V1 sync manager initialized successfully
+2025-11-07 17:13:17,248 - INFO - [STEP 3] Starting PRODUCTION full sync...
+2025-11-07 17:13:17,248 - INFO - [STEP 3] Parameters:
+2025-11-07 17:13:17,248 - INFO - [STEP 3]   - project_id: b.1eea4119-3553-4167-b93d-3a3d5d07d33d
+2025-11-07 17:13:17,248 - INFO - [STEP 3]   - max_depth: 10
+2025-11-07 17:13:17,248 - INFO - [STEP 3]   - include_custom_attributes: True
+2025-11-07 17:13:17,249 - INFO - 🚀 开始优化全量同步: 项目 b.1eea4119-3553-4167-b93d-3a3d5d07d33d
+2025-11-07 17:13:17,260 - INFO - 🚀 开始优化全量同步 V2: 项目 b.1eea4119-3553-4167-b93d-3a3d5d07d33d
+2025-11-07 17:13:17,261 - INFO - 正在创建Neon PostgreSQL连接池: postgresql://neondb_owner:***@ep-soft-mountain-a4jqpy5e-pooler.us-east-1.aws.neon.tech:5432/neondb?sslmode=require&channel_binding=require
+2025-11-07 17:13:20,465 - INFO - Neon PostgreSQL连接池创建成功
+2025-11-07 17:13:20,944 - INFO - Neon PostgreSQL版本: PostgreSQL 17.5 (6bc9ef8) on aarch64-unknown-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 1...
+2025-11-07 17:13:22,178 - INFO - 数据库: neondb, 用户: neondb_owner
+2025-11-07 17:13:27,657 - INFO - 🧹 数据清理完成: 文件夹(34), 文件(30), 版本(33), 属性定义(3), 属性值(7)
+2025-11-07 17:13:27,658 - INFO - 📁 获取项目顶级文件夹...
+2025-11-07 17:13:29,788 - INFO - 📂 找到 1 个顶级文件夹
+2025-11-07 17:13:29,789 - INFO - 🔄 开始BFS递归收集数据...
+2025-11-07 17:13:42,567 - INFO - 📊 BFS收集完成: 34 文件夹, 31 文件
+2025-11-07 17:13:42,569 - INFO - Getting file versions and custom attributes...
+2025-11-07 17:13:42,569 - INFO - Batch retrieving file details: 31 files
+2025-11-07 17:13:59,294 - INFO - File details retrieval completed: 31 files
+2025-11-07 17:13:59,294 - INFO - 💾 开始批量数据库操作...
+2025-11-07 17:14:26,277 - INFO - File versions sync completed: 35 versions
+2025-11-07 17:14:26,277 - INFO - Found 7 attribute definitions and 7 attribute values
+2025-11-07 17:14:27,901 - INFO - Custom attribute definitions sync completed: 3 definitions
+2025-11-07 17:14:29,262 - INFO - Retrieved 3 attribute ID mappings
+2025-11-07 17:14:29,262 - INFO - Processing 7 valid attribute values out of 7
+2025-11-07 17:14:32,286 - INFO - Custom attribute values sync completed: 7 values
+2025-11-07 17:14:32,973 - INFO - ✅ V2全量同步完成: {'status': 'success', 'folders_synced': 34, 'files_synced': 31, 'versions_synced': 35, 'custom_attrs_synced': 7, 'total_time_seconds': 75.71, 'performance_stats': {'api_calls': 72, 'api_calls_saved': 0, 'smart_skips': 0, 'batch_operations': 8, 'concurrent_operations': 0, 'memory_peak_mb': 0, 'processing_time': 0}, 'architecture_version': 'v2'}
+2025-11-07 17:14:32,974 - INFO - [STEP 4] Analyzing sync results...
+2025-11-07 17:14:32,975 - INFO - [STEP 5] Generating production test report...
+2025-11-07 17:14:32,975 - INFO - [SAVE] Results saved to: production_acc_sync_test_1762506872.json
+2025-11-07 17:19:25,122 - INFO - ================================================================================
+2025-11-07 17:19:25,122 - INFO - PRODUCTION ACC FULL SYNC TEST
+2025-11-07 17:19:25,123 - INFO - ================================================================================
+2025-11-07 17:19:25,123 - INFO - Project ID: b.1eea4119-3553-4167-b93d-3a3d5d07d33d
+2025-11-07 17:19:25,123 - INFO - Test Start: 2025-11-07 17:19:25
+2025-11-07 17:19:25,123 - INFO - [STEP 1] Getting authentication...
+2025-11-07 17:19:25,385 - INFO - [AUTH] Successfully obtained access token from existing system
+2025-11-07 17:19:25,385 - INFO - [AUTH] Token expires in 23 minutes
+2025-11-07 17:19:25,385 - INFO - [STEP 2] Initializing V2 sync manager...
+2025-11-07 17:19:25,483 - WARNING - [STEP 2] V2 sync manager not available, falling back to V1...
+2025-11-07 17:19:25,539 - INFO - [STEP 2] V1 sync manager initialized successfully
+2025-11-07 17:19:25,540 - INFO - [STEP 3] Starting PRODUCTION full sync...
+2025-11-07 17:19:25,540 - INFO - [STEP 3] Parameters:
+2025-11-07 17:19:25,540 - INFO - [STEP 3]   - project_id: b.1eea4119-3553-4167-b93d-3a3d5d07d33d
+2025-11-07 17:19:25,540 - INFO - [STEP 3]   - max_depth: 10
+2025-11-07 17:19:25,541 - INFO - [STEP 3]   - include_custom_attributes: True
+2025-11-07 17:19:25,541 - INFO - 🚀 开始优化全量同步: 项目 b.1eea4119-3553-4167-b93d-3a3d5d07d33d
+2025-11-07 17:19:25,541 - INFO - 🚀 开始优化全量同步 V2: 项目 b.1eea4119-3553-4167-b93d-3a3d5d07d33d
+2025-11-07 17:19:25,541 - INFO - 正在创建Neon PostgreSQL连接池: postgresql://neondb_owner:***@ep-soft-mountain-a4jqpy5e-pooler.us-east-1.aws.neon.tech:5432/neondb?sslmode=require&channel_binding=require
+2025-11-07 17:19:28,750 - INFO - Neon PostgreSQL连接池创建成功
+2025-11-07 17:19:29,209 - INFO - Neon PostgreSQL版本: PostgreSQL 17.5 (6bc9ef8) on aarch64-unknown-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 1...
+2025-11-07 17:19:30,161 - INFO - 数据库: neondb, 用户: neondb_owner
+2025-11-07 17:19:35,308 - INFO - 🧹 数据清理完成: 文件夹(34), 文件(31), 版本(35), 属性定义(3), 属性值(7)
+2025-11-07 17:19:35,308 - INFO - 📁 获取项目顶级文件夹...
+2025-11-07 17:19:37,591 - INFO - 📂 找到 1 个顶级文件夹
+2025-11-07 17:19:37,592 - INFO - 🔄 开始BFS递归收集数据...
+2025-11-07 17:19:49,883 - INFO - 📊 BFS收集完成: 34 文件夹, 32 文件
+2025-11-07 17:19:49,900 - INFO - Getting file versions and custom attributes...
+2025-11-07 17:19:49,910 - INFO - Batch retrieving file details: 32 files
+2025-11-07 17:20:07,129 - INFO - File details retrieval completed: 32 files
+2025-11-07 17:20:07,130 - INFO - 💾 开始批量数据库操作...
+2025-11-07 17:20:31,782 - INFO - File versions sync completed: 21 versions
+2025-11-07 17:20:31,787 - INFO - Found 7 attribute definitions and 7 attribute values
+2025-11-07 17:20:34,668 - INFO - Custom attribute definitions sync completed: 3 definitions
+2025-11-07 17:20:36,213 - INFO - Retrieved 3 attribute ID mappings
+2025-11-07 17:20:36,214 - INFO - Processing 7 valid attribute values out of 7
+2025-11-07 17:20:38,800 - INFO - Custom attribute values sync completed: 7 values
+2025-11-07 17:20:39,509 - INFO - ✅ V2全量同步完成: {'status': 'success', 'folders_synced': 34, 'files_synced': 32, 'versions_synced': 21, 'custom_attrs_synced': 7, 'total_time_seconds': 73.97, 'performance_stats': {'api_calls': 73, 'api_calls_saved': 0, 'smart_skips': 0, 'batch_operations': 8, 'concurrent_operations': 0, 'memory_peak_mb': 0, 'processing_time': 0}, 'architecture_version': 'v2'}
+2025-11-07 17:20:39,510 - INFO - [STEP 4] Analyzing sync results...
+2025-11-07 17:20:39,510 - INFO - [STEP 5] Generating production test report...
+2025-11-07 17:20:39,511 - INFO - [SAVE] Results saved to: production_acc_sync_test_1762507239.json
+2025-11-07 17:23:54,061 - INFO - ================================================================================
+2025-11-07 17:23:54,061 - INFO - PRODUCTION ACC FULL SYNC TEST
+2025-11-07 17:23:54,061 - INFO - ================================================================================
+2025-11-07 17:23:54,062 - INFO - Project ID: b.1eea4119-3553-4167-b93d-3a3d5d07d33d
+2025-11-07 17:23:54,062 - INFO - Test Start: 2025-11-07 17:23:54
+2025-11-07 17:23:54,062 - INFO - [STEP 1] Getting authentication...
+2025-11-07 17:23:54,381 - INFO - [AUTH] Successfully obtained access token from existing system
+2025-11-07 17:23:54,381 - INFO - [AUTH] Token expires in 19 minutes
+2025-11-07 17:23:54,381 - INFO - [STEP 2] Initializing V2 sync manager...
+2025-11-07 17:23:54,498 - WARNING - [STEP 2] V2 sync manager not available, falling back to V1...
+2025-11-07 17:23:54,559 - INFO - [STEP 2] V1 sync manager initialized successfully
+2025-11-07 17:23:54,559 - INFO - [STEP 3] Starting PRODUCTION full sync...
+2025-11-07 17:23:54,559 - INFO - [STEP 3] Parameters:
+2025-11-07 17:23:54,559 - INFO - [STEP 3]   - project_id: b.1eea4119-3553-4167-b93d-3a3d5d07d33d
+2025-11-07 17:23:54,559 - INFO - [STEP 3]   - max_depth: 10
+2025-11-07 17:23:54,559 - INFO - [STEP 3]   - include_custom_attributes: True
+2025-11-07 17:23:54,559 - INFO - 🚀 开始优化全量同步: 项目 b.1eea4119-3553-4167-b93d-3a3d5d07d33d
+2025-11-07 17:23:54,563 - INFO - 🚀 开始优化全量同步 V2: 项目 b.1eea4119-3553-4167-b93d-3a3d5d07d33d
+2025-11-07 17:23:54,564 - INFO - 正在创建Neon PostgreSQL连接池: postgresql://neondb_owner:***@ep-soft-mountain-a4jqpy5e-pooler.us-east-1.aws.neon.tech:5432/neondb?sslmode=require&channel_binding=require
+2025-11-07 17:23:57,559 - INFO - Neon PostgreSQL连接池创建成功
+2025-11-07 17:23:57,992 - INFO - Neon PostgreSQL版本: PostgreSQL 17.5 (6bc9ef8) on aarch64-unknown-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 1...
+2025-11-07 17:23:59,039 - INFO - 数据库: neondb, 用户: neondb_owner
+2025-11-07 17:24:04,374 - INFO - 🧹 数据清理完成: 文件夹(34), 文件(32), 版本(22), 属性定义(3), 属性值(7)
+2025-11-07 17:24:04,379 - INFO - 📁 获取项目顶级文件夹...
+2025-11-07 17:24:06,400 - INFO - 📂 找到 1 个顶级文件夹
+2025-11-07 17:24:06,402 - INFO - 🔄 开始BFS递归收集数据...
+2025-11-07 17:24:18,964 - INFO - 📊 BFS收集完成: 34 文件夹, 32 文件
+2025-11-07 17:24:18,966 - INFO - Getting file versions and custom attributes...
+2025-11-07 17:24:18,966 - INFO - Batch retrieving file details: 32 files
+2025-11-07 17:24:35,724 - INFO - File details retrieval completed: 32 files
+2025-11-07 17:24:35,724 - INFO - 💾 开始批量数据库操作...
+2025-11-07 17:25:00,947 - INFO - File versions sync completed: 36 versions
+2025-11-07 17:25:00,948 - INFO - Found 7 attribute definitions and 7 attribute values
+2025-11-07 17:25:02,444 - INFO - Custom attribute definitions sync completed: 3 definitions
+2025-11-07 17:25:03,515 - INFO - Retrieved 3 attribute ID mappings
+2025-11-07 17:25:03,516 - INFO - Processing 7 valid attribute values out of 7
+2025-11-07 17:25:05,866 - INFO - Custom attribute values sync completed: 7 values
+2025-11-07 17:25:06,497 - INFO - ✅ V2全量同步完成: {'status': 'success', 'folders_synced': 34, 'files_synced': 32, 'versions_synced': 36, 'custom_attrs_synced': 7, 'total_time_seconds': 71.93, 'performance_stats': {'api_calls': 73, 'api_calls_saved': 0, 'smart_skips': 0, 'batch_operations': 8, 'concurrent_operations': 0, 'memory_peak_mb': 0, 'processing_time': 0}, 'architecture_version': 'v2'}
+2025-11-07 17:25:06,498 - INFO - [STEP 4] Analyzing sync results...
+2025-11-07 17:25:06,499 - INFO - [STEP 5] Generating production test report...
+2025-11-07 17:25:06,501 - INFO - [SAVE] Results saved to: production_acc_sync_test_1762507506.json

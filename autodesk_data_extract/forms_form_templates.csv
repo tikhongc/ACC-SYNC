@@ -1,0 +1,5 @@
+﻿created_by,updated_at,id,bim360_account_id,bim360_project_id,name,status,file_id,native_form_id,template_type
+,2025-10-20 02:32:50.792134,5d8efb95-a2aa-42b3-8865-49dcf4af848e,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,(Sample) Daily Safety Inspection,active,7c5699b1-1fe8-4d2c-8f50-e220a21829ae,,pg.template_type.safety
+,2025-10-20 02:32:50.928486,d39a2fd4-caac-4353-b953-6d715d92ad44,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,(Sample) Job Hazard Analysis,active,ce3a268c-7cce-4779-b897-eea3c2f70297,,pg.template_type.safety
+,2025-10-20 02:32:51.050198,76b5aa2b-4664-4c6f-b089-b3e6b08d8198,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,(Sample) Time Sheet,active,600cb14b-9aeb-46f4-a0e4-44282c83e8d9,,pg.template_type.time_sheet
+,2025-10-22 03:14:22.330148,11fbfe55-c5fc-4cb0-9f4e-5e1495cdf1ed,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,(Sample) Daily Report,active,,7490afc6-bed4-4562-9fa3-b799bd539fe6,pg.template_type.daily_report

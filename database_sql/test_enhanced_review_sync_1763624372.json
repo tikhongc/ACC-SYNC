@@ -1,0 +1,92 @@
+{
+  "success": true,
+  "test_metadata": {
+    "project_id": "b.1eea4119-3553-4167-b93d-3a3d5d07d33d",
+    "test_type": "enhanced_review_sync",
+    "sync_mode": "async_parallel",
+    "max_concurrent": 10,
+    "cache_enabled": true,
+    "cache_ttl": 3600,
+    "cache_max_size": 5000,
+    "batch_size": 100,
+    "timestamp": "2025-11-20 15:39:32",
+    "duration_seconds": 167.9312481880188,
+    "success": true
+  },
+  "sync_results": {
+    "status": "success",
+    "workflows_total": 4,
+    "workflows_synced": 4,
+    "reviews_total": 14,
+    "reviews_synced": 14,
+    "file_versions_total": 22,
+    "file_versions_synced": 22,
+    "progress_steps_total": 79,
+    "progress_steps_synced": 79,
+    "total_items_synced": 119,
+    "error_count": 0,
+    "error_details": []
+  },
+  "performance_metrics": {
+    "duration_seconds": 167.9312481880188,
+    "items_per_second": 0.7229765205258537,
+    "api_calls": 31,
+    "api_time": 32.81365132331848,
+    "api_success_rate": 100.0,
+    "db_time": 33.54621934890747,
+    "db_queries": 15,
+    "cache_hit_rate": 31.11111111111111,
+    "cache_hits": 14,
+    "cache_misses": 31,
+    "memory_usage_mb": 0.0,
+    "optimization_enabled": true,
+    "estimated_speedup": 1.1075961264323546
+  },
+  "timing_breakdown": {
+    "authentication": 0.3060126304626465,
+    "initialization": 0.3509056568145752,
+    "cache_check": 0.0009927749633789062,
+    "synchronization": 164.597323179245,
+    "performance_analysis": 0.0069615840911865234,
+    "candidates_verification": 2.665945053100586,
+    "analysis": 0.0004429817199707031,
+    "report_generation": 0.0003609657287597656
+  },
+  "optimization_features": {
+    "async_parallel_api_calls": true,
+    "aiohttp_session": true,
+    "batch_upsert_optimization": true,
+    "memory_caching": true,
+    "cache_type": "cachetools",
+    "circuit_breaker_pattern": true,
+    "smart_pagination": true,
+    "rate_limit_retry": true,
+    "performance_monitoring": true,
+    "bottleneck_analysis": true,
+    "max_concurrent": 10,
+    "cache_max_size": 5000,
+    "batch_size": 100
+  },
+  "bottleneck_analysis": [],
+  "candidates_configuration": {
+    "table_exists": true,
+    "total_configs": 67,
+    "configs_with_candidates": 67,
+    "source_distribution": {
+      "workflow_template": 67
+    },
+    "reviews_with_configs": 14,
+    "sample_configs": 5,
+    "success": true
+  },
+  "production_readiness": {
+    "real_api_integration": true,
+    "authentication_working": true,
+    "database_integration": true,
+    "cache_integration": true,
+    "error_handling": "Implemented",
+    "optimization_status": "Enhanced",
+    "async_ready": true,
+    "scalability": "High"
+  }
+}

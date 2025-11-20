@@ -1,0 +1,4 @@
+﻿bim360_account_id,bim360_project_id,uid,markup_id,type,destination,uri,created_by,created_at,deleted,deleted_by,deleted_at
+1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,a76e4e7b-bf98-41af-ba69-048f019d0f3b,943270575,acc_document,,urn:adsk.wipprod:dm.lineage:m8aOlqG2TG6SNIvt58U-Zg,QT725AZVMVUKV69K,2025-10-27 06:33:53.817954,f,,
+1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,b0275d8e-2b5c-45a2-b70b-e655d0bc40fd,943270376,rfi,ec44febd-ed08-473a-b164-4e018aa35928,,QT725AZVMVUKV69K,2025-10-27 06:34:13.537915,f,,
+1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,ef4310b5-5962-4790-9935-675e014119da,943270358,submittal,b654f6bf-a720-4682-8fc2-c756706e29e9,,QT725AZVMVUKV69K,2025-10-27 06:34:23.701278,f,,

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API 连接测试</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-item { margin: 10px 0; padding: 10px; border: 1px solid #ccc; }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+        .loading { background-color: #fff3cd; border-color: #ffeaa7; }
+        button { padding: 10px 20px; margin: 5px; }
+    </style>
+</head>
+<body>
+    <h1>ACC-SYNC API 连接测试</h1>
+    
+    <button onclick="testAll()">测试所有端点</button>
+    <button onclick="clearResults()">清除结果</button>
+    
+    <div id="results"></div>
+
+    <script>
+        const results = document.getElementById('results');
+        
+        function addResult(title, status, message, details = '') {
+            const div = document.createElement('div');
+            div.className = `test-item ${status}`;
+            div.innerHTML = `
+                <h3>${title}</h3>
+                <p><strong>状态:</strong> ${message}</p>
+                ${details ? `<pre>${details}</pre>` : ''}
+            `;
+            results.appendChild(div);
+        }
+        
+        function clearResults() {
+            results.innerHTML = '';
+        }
+        
+        async function testEndpoint(url, title) {
+            addResult(title, 'loading', '测试中...');
+            
+            try {
+                const response = await fetch(url, {
+                    method: 'GET',
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const text = await response.text();
+                let data;
+                try {
+                    data = JSON.parse(text);
+                } catch {
+                    data = text;
+                }
+                
+                // 移除loading状态的结果
+                const loadingItems = document.querySelectorAll('.loading');
+                if (loadingItems.length > 0) {
+                    loadingItems[loadingItems.length - 1].remove();
+                }
+                
+                if (response.ok) {
+                    addResult(title, 'success', `成功 (${response.status})`, JSON.stringify(data, null, 2));
+                } else {
+                    addResult(title, 'error', `失败 (${response.status})`, JSON.stringify(data, null, 2));
+                }
+            } catch (error) {
+                // 移除loading状态的结果
+                const loadingItems = document.querySelectorAll('.loading');
+                if (loadingItems.length > 0) {
+                    loadingItems[loadingItems.length - 1].remove();
+                }
+                
+                addResult(title, 'error', '网络错误', error.message);
+            }
+        }
+        
+        async function testAuthStart() {
+            addResult('认证启动测试', 'loading', '测试中...');
+            
+            try {
+                const response = await fetch('/auth/start', {
+                    method: 'GET',
+                    credentials: 'include',
+                    redirect: 'manual'  // 不自动跟随重定向
+                });
+                
+                // 移除loading状态的结果
+                const loadingItems = document.querySelectorAll('.loading');
+                if (loadingItems.length > 0) {
+                    loadingItems[loadingItems.length - 1].remove();
+                }
+                
+                if (response.status === 302 || response.status === 301) {
+                    const location = response.headers.get('Location');
+                    addResult('认证启动测试', 'success', `重定向成功 (${response.status})`, `重定向到: ${location}`);
+                } else {
+                    const text = await response.text();
+                    addResult('认证启动测试', 'error', `意外状态码 (${response.status})`, text);
+                }
+            } catch (error) {
+                // 移除loading状态的结果
+                const loadingItems = document.querySelectorAll('.loading');
+                if (loadingItems.length > 0) {
+                    loadingItems[loadingItems.length - 1].remove();
+                }
+                
+                addResult('认证启动测试', 'error', '网络错误', error.message);
+            }
+        }
+        
+        async function testAll() {
+            clearResults();
+            
+            // 测试各个端点
+            await testEndpoint('/health', 'Health 检查');
+            await testEndpoint('/api/auth/check', 'Auth 检查');
+            await testAuthStart();
+            
+            // 测试直接后端连接
+            await testEndpoint('http://localhost:8080/health', '直接后端 Health');
+            await testEndpoint('http://localhost:8080/api/auth/check', '直接后端 Auth');
+        }
+        
+        // 页面加载时自动测试
+        window.onload = function() {
+            console.log('页面加载完成，开始测试...');
+            testAll();
+        };
+    </script>
+</body>
+</html>

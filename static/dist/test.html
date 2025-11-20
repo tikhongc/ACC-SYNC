@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Frontend API</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <h1>Test Frontend API</h1>
+    
+    <div>
+        <h2>Test Download Tasks API</h2>
+        <button onclick="testDownloadTasks()">Load Download Tasks</button>
+        <button onclick="createTestTask()">Create Test Task</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        async function testDownloadTasks() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = 'Loading...';
+            
+            try {
+                const response = await axios.get('/api/download-config/downloads');
+                console.log('Download tasks response:', response.data);
+                
+                resultDiv.innerHTML = `
+                    <h3>Download Tasks Response:</h3>
+                    <pre>${JSON.stringify(response.data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                console.error('Error loading download tasks:', error);
+                resultDiv.innerHTML = `
+                    <h3>Error:</h3>
+                    <pre>${error.message}</pre>
+                    <pre>${JSON.stringify(error.response?.data, null, 2)}</pre>
+                `;
+            }
+        }
+        
+        async function createTestTask() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = 'Creating task...';
+            
+            const downloadData = {
+                project_id: "test_project_123",
+                file_ids: ["test_file_1", "test_file_2"],
+                options: {
+                    downloadPath: "ACC_BACKUP/assets",
+                    concurrency: 2,
+                    retryCount: 1,
+                    timeout: 60
+                }
+            };
+            
+            try {
+                const response = await axios.post('/api/download-config/download', downloadData);
+                console.log('Create task response:', response.data);
+                
+                resultDiv.innerHTML = `
+                    <h3>Create Task Response:</h3>
+                    <pre>${JSON.stringify(response.data, null, 2)}</pre>
+                `;
+                
+                // Wait and then load tasks
+                setTimeout(testDownloadTasks, 1000);
+            } catch (error) {
+                console.error('Error creating task:', error);
+                resultDiv.innerHTML = `
+                    <h3>Error:</h3>
+                    <pre>${error.message}</pre>
+                    <pre>${JSON.stringify(error.response?.data, null, 2)}</pre>
+                `;
+            }
+        }
+        
+        // Auto-load tasks on page load
+        window.onload = function() {
+            testDownloadTasks();
+        };
+    </script>
+</body>
+</html>

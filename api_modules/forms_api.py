@@ -26,8 +26,16 @@ def get_jarvis_forms():
             "status": "unauthorized"
         }), 401
     
-    # 获取项目ID - 优先使用请求参数，否则使用默认项目ID
-    project_id = request.args.get('projectId', config.JARVIS_PROJECT_ID)
+    # 获取项目ID - 必须通过参数提供
+    project_id = request.args.get('projectId')
+    
+    if not project_id:
+        return jsonify({
+            "error": "缺少必需的 projectId 参数",
+            "message": "请在请求中提供 projectId 参数，例如: ?projectId=your-project-id",
+            "status": "error",
+            "suggestion": "请先选择一个项目，然后重试"
+        }), 400
     
     headers = {
         "Authorization": f"Bearer {access_token}",
@@ -168,9 +176,17 @@ def export_forms_json():
     }
     
     try:
-        # 获取项目ID - 优先使用请求参数，否则使用默认项目ID
+        # 获取项目ID - 必须通过参数提供
         from flask import request
-        project_id = request.args.get('projectId', config.JARVIS_PROJECT_ID)
+        project_id = request.args.get('projectId')
+        
+        if not project_id:
+            return jsonify({
+                "error": "缺少必需的 projectId 参数",
+                "message": "请在请求中提供 projectId 参数",
+                "status": "error"
+            }), 400
+        
         print(f"🚀 Export Forms API: 使用项目ID: {project_id}")
         
         forms_url = f"{config.AUTODESK_API_BASE}/construction/forms/v1/projects/{project_id}/forms"
@@ -378,7 +394,15 @@ def get_form_templates():
     try:
         # 获取查询参数
         from flask import request
-        project_id = request.args.get('projectId', config.JARVIS_PROJECT_ID)
+        project_id = request.args.get('projectId')
+        
+        if not project_id:
+            return jsonify({
+                "error": "缺少必需的 projectId 参数",
+                "message": "请在请求中提供 projectId 参数",
+                "status": "error"
+            }), 400
+        
         print(f"🚀 Templates API: 使用项目ID: {project_id}")
         
         offset = request.args.get('offset', 0, type=int)
@@ -591,7 +615,7 @@ def get_form_templates():
             
             architecture_info["roles_and_permissions"] = roles
             
-            # 从模板基本信息中提取其他有用信息
+            # 从模板basicInfo中提取其他有用信息
             architecture_info["template_metadata"] = {
                 "template_type": template.get("templateType", "unknown"),
                 "is_pdf": template.get("isPdf", False),
@@ -640,6 +664,7 @@ def get_form_templates():
         
         return jsonify({
             "status": "success",
+            "data": templates_list,  # 直接返回模板列表，符合Autodesk API格式
             "pagination": pagination_info,
             "query_parameters": {
                 "offset": offset,
@@ -649,7 +674,7 @@ def get_form_templates():
                 "updated_before": updated_before,
                 "total_requested": len(templates_list)
             },
-            "templates": templates_data,
+            "templates": templates_data,  # 保留原始完整数据
             "template_analysis": template_analysis,
             "workflow_architecture": workflow_architecture,
             "architecture_summary": architecture_summary,
@@ -679,9 +704,17 @@ def export_templates_json():
     }
     
     try:
-        # 获取项目ID - 优先使用请求参数，否则使用默认项目ID
+        # 获取项目ID - 必须通过参数提供
         from flask import request
-        project_id = request.args.get('projectId', config.JARVIS_PROJECT_ID)
+        project_id = request.args.get('projectId')
+        
+        if not project_id:
+            return jsonify({
+                "error": "缺少必需的 projectId 参数",
+                "message": "请在请求中提供 projectId 参数",
+                "status": "error"
+            }), 400
+        
         print(f"🚀 Export Templates API: 使用项目ID: {project_id}")
         
         # 获取表单模板列表 (使用默认参数获取所有模板)
@@ -719,12 +752,12 @@ def export_templates_json():
             },
             "architecture_analysis": {
                 "blueprint_components": {
-                    "roles_and_permissions": "角色和权限定义",
-                    "statuses": "状态流程定义",
-                    "workflow_rules": "流转规则配置",
-                    "participants": "参与者信息"
+                    "roles_and_permissions": "Roles and permissions definition",
+                    "statuses": "Status workflow definition",
+                    "workflow_rules": "Workflow rules configuration",
+                    "participants": "Participant information"
                 },
-                "data_availability": "检查各模板中表单模板信息的可用性"
+                "data_availability": "Check availability of form template information in each template"
             },
             "templates_data": detailed_templates,
             "raw_response": templates_data
@@ -764,8 +797,16 @@ def get_recent_form_templates():
         from datetime import datetime, timedelta
         from flask import request
         
-        # 获取项目ID
-        project_id = request.args.get('projectId', config.JARVIS_PROJECT_ID)
+        # 获取项目ID - 必须通过参数提供
+        project_id = request.args.get('projectId')
+        
+        if not project_id:
+            return jsonify({
+                "error": "缺少必需的 projectId 参数",
+                "message": "请在请求中提供 projectId 参数",
+                "status": "error"
+            }), 400
+        
         print(f"🚀 Recent Templates API: 使用项目ID: {project_id}")
         
         # 获取最近30天更新的模板
@@ -789,7 +830,7 @@ def get_recent_form_templates():
         
         return jsonify({
             "status": "success",
-            "message": "成功获取最近更新的表单模板",
+            "message": "Successfully retrieved recently updated form templates",
             "query_info": {
                 "description": "获取最近30天更新的前10个表单模板",
                 "parameters_used": params,

@@ -1,0 +1,11 @@
+﻿issue_type_id,bim360_account_id,bim360_project_id,issue_type,is_active,created_by,created_at,updated_by,updated_at,deleted_by,deleted_at
+c1b6a35b-eb84-4dfd-8b9c-6c01f1cbd06c,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,Design,t,System,2025-10-20 02:32:50.425,System,2025-10-20 02:32:50.444,,
+2519af21-9f9e-473f-a2ab-ec75262a98dd,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,Quality,t,System,2025-10-20 02:32:50.425,System,2025-10-20 02:32:50.425,,
+ac18161b-1a70-414d-b75e-fc6097431f01,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,General,t,System,2025-10-20 02:32:50.425,System,2025-10-20 02:32:50.425,,
+a8da993b-4a8f-4fc4-ac93-104bfff673fc,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,Safety,t,System,2025-10-20 02:32:50.425,System,2025-10-20 02:32:50.425,,
+3c0305ef-0b67-49a5-9039-bbb029ad5422,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,Punch List,t,System,2025-10-20 02:32:50.425,System,2025-10-20 02:32:50.425,,
+b1b5ddb3-e43f-49a5-842d-58f8b4e61d5d,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,Commissioning,t,System,2025-10-20 02:32:50.425,QT725AZVMVUKV69K,2025-10-23 09:14:33.793,,
+6a9ef2fc-a267-400f-98f3-442867e24fce,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,Work List,f,System,2025-10-20 02:32:50.425,System,2025-10-20 02:32:50.425,,
+6decb7d3-49b8-4430-bac7-7350c090a088,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,Observation,t,System,2025-10-20 02:32:50.425,System,2025-10-20 02:32:50.425,,
+264d4e0b-9e0e-4106-ae35-9cdc4cf55e96,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,Warranty,f,System,2025-10-20 02:32:50.425,System,2025-10-20 02:32:50.425,,
+fa298b88-95af-4270-9c5f-8ddfc549beb2,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,Coordination,t,System,2025-10-20 02:32:50.425,System,2025-10-20 02:32:50.425,,

@@ -1,0 +1,5 @@
+﻿uid,layout_uid,bim360_account_id,bim360_project_id,sort_index,label,description,form_section_id,assignee_id,assignee_type,display_index
+f7a84b1b-d395-45e6-a2d7-53adf73bc35b,4bc34920-6959-4c1c-8f4a-bbb976f62fb0,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,0,Work Log,,,,,1
+f6b66f4e-6a74-4c9c-9fc6-aa1ab42dc9f0,4bc34920-6959-4c1c-8f4a-bbb976f62fb0,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,1,Materials,,,,,2
+ec7f81e2-fac2-452f-a5f6-d365b27a27fa,4bc34920-6959-4c1c-8f4a-bbb976f62fb0,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,2,Equipment,,,,,3
+949bb1f0-4dc2-4e4e-94f2-5a0fabb10af9,4bc34920-6959-4c1c-8f4a-bbb976f62fb0,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,3,Signature,,,,,4

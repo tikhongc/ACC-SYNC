@@ -1,0 +1,99 @@
+{
+  "success": true,
+  "test_metadata": {
+    "project_id": "b.1eea4119-3553-4167-b93d-3a3d5d07d33d",
+    "test_type": "enhanced_review_sync",
+    "sync_mode": "async_parallel",
+    "max_concurrent": 10,
+    "cache_enabled": true,
+    "cache_ttl": 3600,
+    "cache_max_size": 5000,
+    "batch_size": 100,
+    "timestamp": "2025-11-20 08:10:42",
+    "duration_seconds": 164.0852313041687,
+    "success": true
+  },
+  "sync_results": {
+    "status": "success",
+    "workflows_total": 3,
+    "workflows_synced": 3,
+    "reviews_total": 14,
+    "reviews_synced": 14,
+    "file_versions_total": 22,
+    "file_versions_synced": 22,
+    "progress_steps_total": 79,
+    "progress_steps_synced": 79,
+    "total_items_synced": 118,
+    "error_count": 0,
+    "error_details": []
+  },
+  "performance_metrics": {
+    "duration_seconds": 164.0852313041687,
+    "items_per_second": 0.7322346169750992,
+    "api_calls": 31,
+    "api_time": 27.027651071548462,
+    "api_success_rate": 100.0,
+    "db_time": 116.69998550415039,
+    "db_queries": 29,
+    "cache_hit_rate": 31.11111111111111,
+    "cache_hits": 14,
+    "cache_misses": 31,
+    "memory_usage_mb": 0.0,
+    "optimization_enabled": true,
+    "estimated_speedup": 1.133557228287093
+  },
+  "timing_breakdown": {
+    "authentication": 0.34763312339782715,
+    "initialization": 0.18817377090454102,
+    "cache_check": 0.0004494190216064453,
+    "synchronization": 161.15053462982178,
+    "performance_analysis": 0.0008146762847900391,
+    "candidates_verification": 2.396583080291748,
+    "analysis": 0.00016427040100097656,
+    "report_generation": 0.00021600723266601562
+  },
+  "optimization_features": {
+    "async_parallel_api_calls": true,
+    "aiohttp_session": true,
+    "batch_upsert_optimization": true,
+    "memory_caching": true,
+    "cache_type": "cachetools",
+    "circuit_breaker_pattern": true,
+    "smart_pagination": true,
+    "rate_limit_retry": true,
+    "performance_monitoring": true,
+    "bottleneck_analysis": true,
+    "max_concurrent": 10,
+    "cache_max_size": 5000,
+    "batch_size": 100
+  },
+  "bottleneck_analysis": [
+    {
+      "type": "database",
+      "severity": "high",
+      "message": "Database operations consume 79.2% of total time",
+      "suggestion": "Consider increasing batch size or optimizing SQL"
+    }
+  ],
+  "candidates_configuration": {
+    "table_exists": true,
+    "total_configs": 67,
+    "configs_with_candidates": 67,
+    "source_distribution": {
+      "workflow_template": 67
+    },
+    "reviews_with_configs": 14,
+    "sample_configs": 5,
+    "success": true
+  },
+  "production_readiness": {
+    "real_api_integration": true,
+    "authentication_working": true,
+    "database_integration": true,
+    "cache_integration": true,
+    "error_handling": "Implemented",
+    "optimization_status": "Enhanced",
+    "async_ready": true,
+    "scalability": "High"
+  }
+}

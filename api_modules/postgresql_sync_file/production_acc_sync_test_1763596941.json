@@ -1,0 +1,37 @@
+{
+  "success": false,
+  "test_metadata": {
+    "project_id": "b.1eea4119-3553-4167-b93d-3a3d5d07d33d",
+    "test_type": "production_acc_full_sync",
+    "architecture_version": "unknown",
+    "timestamp": "2025-11-20 08:02:21",
+    "duration_seconds": 3.191857099533081,
+    "success": false
+  },
+  "sync_results": {
+    "status": "error",
+    "error_details": "Sync manager initialization failed: Could not import sync manager: No module named 'pytz'",
+    "folders_synced": 0,
+    "files_synced": 0,
+    "custom_attributes_synced": 0,
+    "total_items_synced": 0
+  },
+  "performance_metrics": {
+    "duration_seconds": 3.191857099533081,
+    "items_per_second": 0,
+    "sync_efficiency_score": 0
+  },
+  "api_optimization_results": {
+    "total_api_calls": 0,
+    "api_calls_saved": 0,
+    "total_possible_calls": 0,
+    "optimization_percentage": 0,
+    "folder_contents_optimizations": 0
+  },
+  "production_readiness": {
+    "real_api_integration": false,
+    "authentication_working": false,
+    "optimization_active": false,
+    "error_handling": "Error: Sync manager initialization failed: Could not import sync manager: No module named 'pytz'"
+  }
+}

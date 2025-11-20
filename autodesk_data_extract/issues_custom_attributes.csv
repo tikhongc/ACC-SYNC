@@ -1,0 +1,16 @@
+﻿issue_id,bim360_account_id,bim360_project_id,mapped_item_type,attribute_mapping_id,attribute_title,attribute_description,attribute_data_type,is_required,attribute_value
+45f0660f-0c04-4ab8-8704-c97cfef18326,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,issueSubtype,f680842b-1eda-4958-9e00-3d36f434c0eb,attribute test,test,text,f,test1
+a6f15d80-cd63-48fa-9e1c-bd5bce0aa752,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,issueSubtype,f680842b-1eda-4958-9e00-3d36f434c0eb,attribute test,test,text,f,
+03eda37d-9ac6-468f-bb03-54d5b06746a8,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,issueSubtype,f680842b-1eda-4958-9e00-3d36f434c0eb,attribute test,test,text,f,
+e7f78866-9fd7-47d3-b13f-3289ef98f747,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,issueSubtype,f680842b-1eda-4958-9e00-3d36f434c0eb,attribute test,test,text,f,
+d9ca9902-dd6d-4a98-92f3-51e84a342842,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,issueSubtype,f680842b-1eda-4958-9e00-3d36f434c0eb,attribute test,test,text,f,
+45f0660f-0c04-4ab8-8704-c97cfef18326,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,issueSubtype,2147f291-5495-4120-ae04-f1eb52dfccf4,test,test,list,f,a42a86d7-0551-4745-bdb6-1aff65aaf40f
+a6f15d80-cd63-48fa-9e1c-bd5bce0aa752,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,issueSubtype,2147f291-5495-4120-ae04-f1eb52dfccf4,test,test,list,f,
+03eda37d-9ac6-468f-bb03-54d5b06746a8,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,issueSubtype,2147f291-5495-4120-ae04-f1eb52dfccf4,test,test,list,f,
+e7f78866-9fd7-47d3-b13f-3289ef98f747,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,issueSubtype,2147f291-5495-4120-ae04-f1eb52dfccf4,test,test,list,f,
+d9ca9902-dd6d-4a98-92f3-51e84a342842,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,issueSubtype,2147f291-5495-4120-ae04-f1eb52dfccf4,test,test,list,f,
+45f0660f-0c04-4ab8-8704-c97cfef18326,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,issueSubtype,d3423042-01bc-4850-a4fa-df6c5b167dd5,custom attributes,test,paragraph,f,test value
+a6f15d80-cd63-48fa-9e1c-bd5bce0aa752,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,issueSubtype,d3423042-01bc-4850-a4fa-df6c5b167dd5,custom attributes,test,paragraph,f,10-27-0829
+03eda37d-9ac6-468f-bb03-54d5b06746a8,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,issueSubtype,d3423042-01bc-4850-a4fa-df6c5b167dd5,custom attributes,test,paragraph,f,Eric MTR demo
+e7f78866-9fd7-47d3-b13f-3289ef98f747,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,issueSubtype,d3423042-01bc-4850-a4fa-df6c5b167dd5,custom attributes,test,paragraph,f,
+d9ca9902-dd6d-4a98-92f3-51e84a342842,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,issueSubtype,d3423042-01bc-4850-a4fa-df6c5b167dd5,custom attributes,test,paragraph,f,

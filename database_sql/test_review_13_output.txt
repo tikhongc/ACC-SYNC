@@ -1,0 +1,624 @@
+================================================================================
+Enhanced Review Sync Test - Async + Cache + UPSERT Optimization
+================================================================================
+This script tests the enhanced async review synchronization with:
+  • Asyncio + aiohttp for concurrent API calls
+  • Cachetools memory caching layer
+  • PostgreSQL UPSERT optimization
+  • Circuit breaker pattern
+  • Performance monitoring and bottleneck analysis
+  • Automatic candidates configuration creation (review_step_candidates)
+
+Note: Account sync functionality removed from this test.
+      For account sync, use: python database_sql/test_account_sync.py
+
+Make sure you're logged in via the web interface first
+
+Usage:
+  python test_enhanced_review_sync.py                        # Use defaults
+  python test_enhanced_review_sync.py --concurrent 15        # Use 15 concurrent tasks
+  python test_enhanced_review_sync.py --no-cache             # Disable memory cache
+  python test_enhanced_review_sync.py --cache-max-size 10000 # Set cache to 10000 entries
+  python test_enhanced_review_sync.py --batch-size 200       # Use batch size 200
+
+2025-11-20 19:31:01,770 - INFO - ================================================================================
+2025-11-20 19:31:01,771 - INFO - ENHANCED REVIEW SYNC TEST - Async + Cache + UPSERT Optimization
+2025-11-20 19:31:01,771 - INFO - ================================================================================
+2025-11-20 19:31:01,771 - INFO - Project ID: b.1eea4119-3553-4167-b93d-3a3d5d07d33d
+2025-11-20 19:31:01,771 - INFO - Max Concurrent: 10
+2025-11-20 19:31:01,771 - INFO - Cache Enabled: True
+2025-11-20 19:31:01,771 - INFO - Cache TTL: 3600s
+2025-11-20 19:31:01,771 - INFO - Cache Max Size: 5000 entries
+2025-11-20 19:31:01,771 - INFO - Batch Size: 100
+2025-11-20 19:31:01,771 - INFO - Test Start: 2025-11-20 19:31:01
+2025-11-20 19:31:01,771 - INFO - [STEP 1/7] Checking authentication status...
+2025-11-20 19:31:01,771 - INFO -   Description: Verify OAuth token is valid and not expired
+[Token] Loading token from persistent storage (version 2.0)
+[Token] Valid token loaded from persistent storage (expires in 27 minutes)
+2025-11-20 19:31:02,103 - INFO - [AUTH] Successfully obtained access token
+2025-11-20 19:31:02,103 - INFO - [AUTH] Token expires in 27 minutes
+2025-11-20 19:31:02,103 - INFO -   [OK] Completed in 0.33s
+2025-11-20 19:31:02,103 - INFO - 
+[STEP 2/7] Initializing enhanced sync modules...
+2025-11-20 19:31:02,103 - INFO -   Description: Import EnhancedReviewSyncManager and create connections
+2025-11-20 19:31:02,103 - INFO -   Features:
+2025-11-20 19:31:02,103 - INFO -     - Asyncio + aiohttp for concurrent API calls
+2025-11-20 19:31:02,103 - INFO -     - Cachetools memory caching layer
+2025-11-20 19:31:02,103 - INFO -     - PostgreSQL UPSERT optimization
+2025-11-20 19:31:02,103 - INFO -     - Circuit breaker pattern
+2025-11-20 19:31:02,103 - INFO -     - Performance monitoring
+2025-11-20 19:31:02,103 - INFO -     - Note: Account sync functionality removed (use account_sync.py)
+[Cache] Memory cache enabled (TTL: 3600s, Max: 5000 entries)
+2025-11-20 19:31:02,408 - INFO -   [OK] EnhancedReviewSyncManager initialized (review sync only)
+2025-11-20 19:31:02,408 - INFO -   [OK] Max concurrent: 10
+2025-11-20 19:31:02,409 - INFO -   [OK] Cache enabled: True
+2025-11-20 19:31:02,409 - INFO -   [OK] Cache max size: 5000
+2025-11-20 19:31:02,409 - INFO -   [OK] Batch size: 100
+2025-11-20 19:31:02,409 - INFO -   [OK] Database connection established
+2025-11-20 19:31:02,409 - INFO -   [INFO] Account sync functionality removed from this manager
+2025-11-20 19:31:02,409 - INFO -   [OK] Completed in 0.31s
+2025-11-20 19:31:02,409 - INFO - 
+[STEP 3/7] Checking cache status...
+2025-11-20 19:31:02,409 - INFO -   Description: Verify memory cache availability and configuration
+2025-11-20 19:31:02,409 - INFO -   [OK] Memory cache is enabled
+2025-11-20 19:31:02,409 - INFO -   [OK] Cache TTL: 3600s
+2025-11-20 19:31:02,409 - INFO -   [OK] Cache Max Size: 5000 entries
+2025-11-20 19:31:02,409 - INFO -   [OK] Current Size: 0 entries
+2025-11-20 19:31:02,409 - INFO -   [OK] Usage: 0.0%
+2025-11-20 19:31:02,409 - INFO -   [OK] Completed in 0.00s
+2025-11-20 19:31:02,409 - INFO - 
+[STEP 4/7] Running enhanced async synchronization...
+2025-11-20 19:31:02,409 - INFO -   Description: Clean database, recreate schema, async parallel sync
+2025-11-20 19:31:02,409 - INFO -   Sub-steps:
+2025-11-20 19:31:02,410 - INFO -     4.1 - Drop all review tables, views, and enum types
+2025-11-20 19:31:02,410 - INFO -     4.2 - Recreate schema from review_system_schema.sql
+2025-11-20 19:31:02,410 - INFO -     4.3 - [ASYNC] Fetch all workflows from ACC API
+2025-11-20 19:31:02,410 - INFO -     4.4 - [ASYNC] Fetch all reviews with smart pagination
+2025-11-20 19:31:02,410 - INFO -     4.5 - [ASYNC] Fetch file versions and progress for all reviews
+2025-11-20 19:31:02,410 - INFO -     4.6 - [CANDIDATES] Create review_step_candidates configurations
+2025-11-20 19:31:02,410 - INFO -     4.7 - [BATCH UPSERT] Bulk insert/update into database
+2025-11-20 19:31:02,410 - INFO -   Project: b.1eea4119-3553-4167-b93d-3a3d5d07d33d
+2025-11-20 19:31:02,411 - INFO -   Mode: [ENHANCED] Async (Optimized)
+2025-11-20 19:31:02,412 - INFO -   [SYNC] Executing full sync with cache-enabled manager...
+2025-11-20 19:31:02,412 - INFO -   [CACHE] Cache enabled: True
+2025-11-20 19:31:02,412 - INFO -   [CACHE] Max size: 5000 entries
+2025-11-20 19:31:02,412 - INFO -   [CACHE] TTL: 3600s
+2025-11-20 19:31:02,412 - INFO -   [SCHEMA] Skipping account schema check (assuming already synced)
+2025-11-20 19:31:02,412 - INFO -   [INFO] If sync fails, please run: python database_sql/test_account_sync.py
+2025-11-20 19:31:02,412 - INFO -   [SYNC] Starting synchronization (this may take several minutes)...
+2025-11-20 19:31:02,412 - INFO -   [INFO] Output will be displayed in real-time
+
+================================================================================
+STARTING FULL REVIEW SYNCHRONIZATION
+================================================================================
+Project ID: 1eea4119-3553-4167-b93d-3a3d5d07d33d
+Clean First: True
+Start Time: 2025-11-20 19:31:02
+
+================================================================================
+CLEANING REVIEW TABLES
+================================================================================
+
+Dropping all review-related objects...
+  All review tables, views, and types dropped successfully!
+
+================================================================================
+RECREATING REVIEW SCHEMA
+================================================================================
+
+1. Reading main schema file: C:\Projects\ACC-SYNC_DEMO1\ACC-SYNC_DEMO\ACC-SYNC\ACC-SYNC\database_sql\review_system_schema.sql
+   Executing main schema SQL...
+   [OK] Main review schema created successfully!
+
+2. Reading candidates schema file: C:\Projects\ACC-SYNC_DEMO1\ACC-SYNC_DEMO\ACC-SYNC\ACC-SYNC\database_sql\create_review_step_candidates.sql
+   Executing review_step_candidates schema SQL...
+   [OK] review_step_candidates schema created successfully!
+
+[SUCCESS] Complete review schema recreated successfully!
+
+================================================================================
+SYNCING WORKFLOWS
+================================================================================
+
+Fetching workflows (offset: 0, limit: 50)...
+   Making API request to: https://developer.api.autodesk.com/construction/reviews/v1/projects/1eea4119-3553-4167-b93d-3a3d5d07d33d/workflows
+   Params: {'limit': 50, 'offset': 0, 'filter[status]': 'ACTIVE'}
+  Retrieved 6 workflows
+
+Total workflows to sync: 6
+[1/6] test... [OK]
+[2/6] test 3... [OK]
+[3/6] test 2... [OK]
+[4/6] test 5 STEPS... [OK]
+[5/6] test 2 steps... [OK]
+[6/6] test 3 step... [OK]
+
+================================================================================
+SYNCING REVIEWS
+================================================================================
+
+[ASYNC] 使用 EnhancedReviewSyncManager 异步并行同步...
+
+Fetching reviews (offset: 0, limit: 50)...
+   Making API request to: https://developer.api.autodesk.com/construction/reviews/v1/projects/1eea4119-3553-4167-b93d-3a3d5d07d33d/reviews
+   Params: {'limit': 50, 'offset': 0}
+  Retrieved 15 reviews
+
+Total reviews to sync: 15
+
+[ASYNC] Starting parallel async sync for 15 reviews...
+   Max concurrent: 10
+============================================================
+
+[OPTIMIZE] Pre-fetching workflow cache...
+
+[FETCH] Getting all workflows for caching...
+   SUCCESS: Retrieved 6 workflows
+   [OK] Retrieved 6 workflows total
+   [OK] Workflow cache built: 6 workflows
+   [STATS] Workflow usage analysis:
+      - test 3 step: 1 reviews
+      - test: 11 reviews
+      - test 2: 3 reviews
+   [OPTIMIZE] Expected to save 12 workflow API calls (savings: 80.0%)
+
+[PHASE 1/2] Async API data fetching...
+
+SUCCESS: API data fetching completed
+   Total API calls: 33 times
+   Duration: 2.61s
+   Success: 15/15
+
+[PHASE 2/2] Batch database writing...
+  SUCCESS: Batch UPSERT reviews: 15 new, 0 updated (duration: 4.98s)
+  SUCCESS: Batch insert 2 file versions (duration: 1.96s)
+  [WORKFLOW] Found workflow via workflow_id: test 3 step (4 steps)
+  [CANDIDATES] Creating candidates from workflow template (review_id=1, 4 steps)
+  [CANDIDATES]   Step 1: 发起者 (template_id=Lane_4ZJvGSeOGE)
+  [CANDIDATES]   Step 2: 初始审阅 1 (template_id=Lane_eJlY5JC3Ak)
+  [CANDIDATES]   Step 3: 初始审阅 2 (template_id=Lane_yNkQUUXmeK)
+  [CANDIDATES]   Step 4: 最终审阅 (template_id=Lane_eAj1QylrOY)
+  [CANDIDATES] ✓ Created 4 complete step candidate configurations from template
+  [PROGRESS] Syncing progress with template mapping (review_id=1, 3 progress records)
+  [PROGRESS]   Step 1: ACC_id=Lane_4ZJvGSeOGE → template_id=Lane_4ZJvGSeOGE
+  [PROGRESS]   Step 2: ACC_id=Lane_eJlY5JC3Ak → template_id=Lane_eJlY5JC3Ak
+  [PROGRESS]   Step 3: ACC_id=Lane_yNkQUUXmeK → template_id=Lane_yNkQUUXmeK
+[DEBUG] ReviewDataAccess.batch_insert_review_steps called with 3 steps
+[DEBUG] SQL (first 300 chars): 
+                INSERT INTO review_progress (review_id, step_id, template_step_id, step_name, step_type, step_order, status, assigned_to, claimed_by, completed_by, action_by, candidates, decision, comments, notes, due_date, started_at, completed_at, end_time, attachments)
+                VALUES (%s...
+[DEBUG] First step data: review_id=1, step_id=Lane_4ZJvGSeOGE, status=SUBMITTED
+[DEBUG] Inserted 3 rows
+  [PROGRESS] ✓ Batch INSERT: 3 records
+  [CURRENT_STEP] Creating progress for current step 4: 最终审阅 (template_id=Lane_eAj1QylrOY)
+[DEBUG] ReviewDataAccess.batch_insert_review_steps called with 1 steps
+[DEBUG] SQL (first 300 chars): 
+                INSERT INTO review_progress (review_id, step_id, template_step_id, step_name, step_type, step_order, status, assigned_to, claimed_by, completed_by, action_by, candidates, decision, comments, notes, due_date, started_at, completed_at, end_time, attachments)
+                VALUES (%s...
+[DEBUG] First step data: review_id=1, step_id=Lane_eAj1QylrOY, status=PENDING
+[DEBUG] Inserted 1 rows
+  [CURRENT_STEP] ✓ Created current step progress (inserted=1)
+  SUCCESS: Batch insert 3 file versions (duration: 1.92s)
+  [WORKFLOW] Found workflow via workflow_id: test (5 steps)
+  [CANDIDATES] Creating candidates from workflow template (review_id=2, 5 steps)
+  [CANDIDATES]   Step 1: 发起者 (template_id=Lane_jLttUcaAwN)
+  [CANDIDATES]   Step 2: 初始审阅 1 (template_id=Lane_z2heGRQ553)
+  [CANDIDATES]   Step 3: 初始审阅 2 (template_id=Lane_KZJDGp6UbD)
+  [CANDIDATES]   Step 4: 初始审阅 3 (template_id=Lane_9vemLNJQov)
+  [CANDIDATES]   Step 5: 最终审阅 (template_id=Lane_gzvwfZReOd)
+  [CANDIDATES] ✓ Created 5 complete step candidate configurations from template
+  [PROGRESS] Syncing progress with template mapping (review_id=2, 3 progress records)
+  [PROGRESS]   Step 1: ACC_id=Lane_jLttUcaAwN → template_id=Lane_jLttUcaAwN
+  [PROGRESS]   Step 2: ACC_id=Lane_z2heGRQ553 → template_id=Lane_z2heGRQ553
+  [PROGRESS]   Step 3: ACC_id=Lane_KZJDGp6UbD → template_id=Lane_KZJDGp6UbD
+[DEBUG] ReviewDataAccess.batch_insert_review_steps called with 3 steps
+[DEBUG] SQL (first 300 chars): 
+                INSERT INTO review_progress (review_id, step_id, template_step_id, step_name, step_type, step_order, status, assigned_to, claimed_by, completed_by, action_by, candidates, decision, comments, notes, due_date, started_at, completed_at, end_time, attachments)
+                VALUES (%s...
+[DEBUG] First step data: review_id=2, step_id=Lane_jLttUcaAwN, status=SUBMITTED
+[DEBUG] Inserted 3 rows
+  [PROGRESS] ✓ Batch INSERT: 3 records
+  [CURRENT_STEP] Creating progress for current step 4: 初始审阅 3 (template_id=Lane_9vemLNJQov)
+[DEBUG] ReviewDataAccess.batch_insert_review_steps called with 1 steps
+[DEBUG] SQL (first 300 chars): 
+                INSERT INTO review_progress (review_id, step_id, template_step_id, step_name, step_type, step_order, status, assigned_to, claimed_by, completed_by, action_by, candidates, decision, comments, notes, due_date, started_at, completed_at, end_time, attachments)
+                VALUES (%s...
+[DEBUG] First step data: review_id=2, step_id=Lane_9vemLNJQov, status=PENDING
+[DEBUG] Inserted 1 rows
+  [CURRENT_STEP] ✓ Created current step progress (inserted=1)
+  SUCCESS: Batch insert 2 file versions (duration: 1.94s)
+  [WORKFLOW] Found workflow via workflow_id: test (5 steps)
+  [CANDIDATES] Creating candidates from workflow template (review_id=3, 5 steps)
+  [CANDIDATES]   Step 1: 发起者 (template_id=Lane_jLttUcaAwN)
+  [CANDIDATES]   Step 2: 初始审阅 1 (template_id=Lane_z2heGRQ553)
+  [CANDIDATES]   Step 3: 初始审阅 2 (template_id=Lane_KZJDGp6UbD)
+  [CANDIDATES]   Step 4: 初始审阅 3 (template_id=Lane_9vemLNJQov)
+  [CANDIDATES]   Step 5: 最终审阅 (template_id=Lane_gzvwfZReOd)
+  [CANDIDATES] ✓ Created 5 complete step candidate configurations from template
+  [PROGRESS] Syncing progress with template mapping (review_id=3, 5 progress records)
+  [PROGRESS]   Step 1: ACC_id=Lane_jLttUcaAwN → template_id=Lane_jLttUcaAwN
+  [PROGRESS]   Step 2: ACC_id=Lane_z2heGRQ553 → template_id=Lane_z2heGRQ553
+  [PROGRESS]   Step 3: ACC_id=Lane_KZJDGp6UbD → template_id=Lane_KZJDGp6UbD
+  [PROGRESS]   Step 4: ACC_id=Lane_z2heGRQ553 → template_id=Lane_9vemLNJQov
+  [PROGRESS]   Step 5: ACC_id=Lane_KZJDGp6UbD → template_id=Lane_gzvwfZReOd
+[DEBUG] ReviewDataAccess.batch_insert_review_steps called with 5 steps
+[DEBUG] SQL (first 300 chars): 
+                INSERT INTO review_progress (review_id, step_id, template_step_id, step_name, step_type, step_order, status, assigned_to, claimed_by, completed_by, action_by, candidates, decision, comments, notes, due_date, started_at, completed_at, end_time, attachments)
+                VALUES (%s...
+[DEBUG] First step data: review_id=3, step_id=Lane_jLttUcaAwN, status=SUBMITTED
+[DEBUG] Inserted 3 rows
+  [PROGRESS] ✓ Batch INSERT: 3 records
+  [CURRENT_STEP] All steps completed (max_order=5, total=5)
+  SUCCESS: Batch insert 1 file versions (duration: 1.99s)
+  [WORKFLOW] Found workflow via workflow_id: test 2 (4 steps)
+  [CANDIDATES] Creating candidates from workflow template (review_id=4, 4 steps)
+  [CANDIDATES]   Step 1: 发起者 (template_id=Lane_ANVIdOO3VJ)
+  [CANDIDATES]   Step 2: 初始审阅 1 (template_id=Lane_IzseBGWpka)
+  [CANDIDATES]   Step 3: 初始审阅 2 (template_id=Lane_DEWBiTbIT4)
+  [CANDIDATES]   Step 4: 最终审阅 (template_id=Lane_N2PnxyPZWk)
+  [CANDIDATES] ✓ Created 4 complete step candidate configurations from template
+  [PROGRESS] Syncing progress with template mapping (review_id=4, 2 progress records)
+  [PROGRESS]   Step 1: ACC_id=Lane_ANVIdOO3VJ → template_id=Lane_ANVIdOO3VJ
+  [PROGRESS]   Step 2: ACC_id=Lane_IzseBGWpka → template_id=Lane_IzseBGWpka
+[DEBUG] ReviewDataAccess.batch_insert_review_steps called with 2 steps
+[DEBUG] SQL (first 300 chars): 
+                INSERT INTO review_progress (review_id, step_id, template_step_id, step_name, step_type, step_order, status, assigned_to, claimed_by, completed_by, action_by, candidates, decision, comments, notes, due_date, started_at, completed_at, end_time, attachments)
+                VALUES (%s...
+[DEBUG] First step data: review_id=4, step_id=Lane_ANVIdOO3VJ, status=SUBMITTED
+[DEBUG] Inserted 2 rows
+  [PROGRESS] ✓ Batch INSERT: 2 records
+  [CURRENT_STEP] Creating progress for current step 3: 初始审阅 2 (template_id=Lane_DEWBiTbIT4)
+[DEBUG] ReviewDataAccess.batch_insert_review_steps called with 1 steps
+[DEBUG] SQL (first 300 chars): 
+                INSERT INTO review_progress (review_id, step_id, template_step_id, step_name, step_type, step_order, status, assigned_to, claimed_by, completed_by, action_by, candidates, decision, comments, notes, due_date, started_at, completed_at, end_time, attachments)
+                VALUES (%s...
+[DEBUG] First step data: review_id=4, step_id=Lane_DEWBiTbIT4, status=PENDING
+[DEBUG] Inserted 1 rows
+  [CURRENT_STEP] ✓ Created current step progress (inserted=1)
+  SUCCESS: Batch insert 1 file versions (duration: 1.97s)
+  [WORKFLOW] Found workflow via workflow_id: test 2 (4 steps)
+  [CANDIDATES] Creating candidates from workflow template (review_id=5, 4 steps)
+  [CANDIDATES]   Step 1: 发起者 (template_id=Lane_ANVIdOO3VJ)
+  [CANDIDATES]   Step 2: 初始审阅 1 (template_id=Lane_IzseBGWpka)
+  [CANDIDATES]   Step 3: 初始审阅 2 (template_id=Lane_DEWBiTbIT4)
+  [CANDIDATES]   Step 4: 最终审阅 (template_id=Lane_N2PnxyPZWk)
+  [CANDIDATES] ✓ Created 4 complete step candidate configurations from template
+  [PROGRESS] Syncing progress with template mapping (review_id=5, 9 progress records)
+  [PROGRESS]   Step 1: ACC_id=Lane_ANVIdOO3VJ → template_id=Lane_ANVIdOO3VJ
+  [PROGRESS]   Step 2: ACC_id=Lane_IzseBGWpka → template_id=Lane_IzseBGWpka
+  [PROGRESS]   Step 3: ACC_id=Lane_DEWBiTbIT4 → template_id=Lane_DEWBiTbIT4
+  [PROGRESS]   Step 4: ACC_id=Lane_DEWBiTbIT4 → template_id=Lane_N2PnxyPZWk
+  [WARNING] Cannot find template step for order 5 (total: 4)
+  [WARNING] Cannot find template step for order 6 (total: 4)
+  [WARNING] Cannot find template step for order 7 (total: 4)
+  [WARNING] Cannot find template step for order 8 (total: 4)
+  [WARNING] Cannot find template step for order 9 (total: 4)
+[DEBUG] ReviewDataAccess.batch_insert_review_steps called with 9 steps
+[DEBUG] SQL (first 300 chars): 
+                INSERT INTO review_progress (review_id, step_id, template_step_id, step_name, step_type, step_order, status, assigned_to, claimed_by, completed_by, action_by, candidates, decision, comments, notes, due_date, started_at, completed_at, end_time, attachments)
+                VALUES (%s...
+[DEBUG] First step data: review_id=5, step_id=Lane_ANVIdOO3VJ, status=SUBMITTED
+[DEBUG] Inserted 4 rows
+  [PROGRESS] ✓ Batch INSERT: 4 records
+  [CURRENT_STEP] All steps completed (max_order=9, total=4)
+  SUCCESS: Batch insert 1 file versions (duration: 1.94s)
+  [WORKFLOW] Found workflow via workflow_id: test (5 steps)
+  [CANDIDATES] Creating candidates from workflow template (review_id=6, 5 steps)
+  [CANDIDATES]   Step 1: 发起者 (template_id=Lane_jLttUcaAwN)
+  [CANDIDATES]   Step 2: 初始审阅 1 (template_id=Lane_z2heGRQ553)
+  [CANDIDATES]   Step 3: 初始审阅 2 (template_id=Lane_KZJDGp6UbD)
+  [CANDIDATES]   Step 4: 初始审阅 3 (template_id=Lane_9vemLNJQov)
+  [CANDIDATES]   Step 5: 最终审阅 (template_id=Lane_gzvwfZReOd)
+  [CANDIDATES] ✓ Created 5 complete step candidate configurations from template
+  [PROGRESS] Syncing progress with template mapping (review_id=6, 12 progress records)
+  [PROGRESS]   Step 1: ACC_id=Lane_jLttUcaAwN → template_id=Lane_jLttUcaAwN
+  [PROGRESS]   Step 2: ACC_id=Lane_z2heGRQ553 → template_id=Lane_z2heGRQ553
+  [PROGRESS]   Step 3: ACC_id=Lane_KZJDGp6UbD → template_id=Lane_KZJDGp6UbD
+  [PROGRESS]   Step 4: ACC_id=Lane_9vemLNJQov → template_id=Lane_9vemLNJQov
+  [PROGRESS]   Step 5: ACC_id=Lane_KZJDGp6UbD → template_id=Lane_gzvwfZReOd
+  [WARNING] Cannot find template step for order 6 (total: 5)
+  [WARNING] Cannot find template step for order 7 (total: 5)
+  [WARNING] Cannot find template step for order 8 (total: 5)
+  [WARNING] Cannot find template step for order 9 (total: 5)
+  [WARNING] Cannot find template step for order 10 (total: 5)
+  [WARNING] Cannot find template step for order 11 (total: 5)
+  [WARNING] Cannot find template step for order 12 (total: 5)
+[DEBUG] ReviewDataAccess.batch_insert_review_steps called with 12 steps
+[DEBUG] SQL (first 300 chars): 
+                INSERT INTO review_progress (review_id, step_id, template_step_id, step_name, step_type, step_order, status, assigned_to, claimed_by, completed_by, action_by, candidates, decision, comments, notes, due_date, started_at, completed_at, end_time, attachments)
+                VALUES (%s...
+[DEBUG] First step data: review_id=6, step_id=Lane_jLttUcaAwN, status=SUBMITTED
+[DEBUG] Inserted 4 rows
+  [PROGRESS] ✓ Batch INSERT: 4 records
+  [CURRENT_STEP] All steps completed (max_order=12, total=5)
+  SUCCESS: Batch insert 1 file versions (duration: 1.96s)
+  [WORKFLOW] Found workflow via workflow_id: test (5 steps)
+  [CANDIDATES] Creating candidates from workflow template (review_id=7, 5 steps)
+  [CANDIDATES]   Step 1: 发起者 (template_id=Lane_jLttUcaAwN)
+  [CANDIDATES]   Step 2: 初始审阅 1 (template_id=Lane_z2heGRQ553)
+  [CANDIDATES]   Step 3: 初始审阅 2 (template_id=Lane_KZJDGp6UbD)
+  [CANDIDATES]   Step 4: 初始审阅 3 (template_id=Lane_9vemLNJQov)
+  [CANDIDATES]   Step 5: 最终审阅 (template_id=Lane_gzvwfZReOd)
+  [CANDIDATES] ✓ Created 5 complete step candidate configurations from template
+  [PROGRESS] Syncing progress with template mapping (review_id=7, 5 progress records)
+  [PROGRESS]   Step 1: ACC_id=Lane_jLttUcaAwN → template_id=Lane_jLttUcaAwN
+  [PROGRESS]   Step 2: ACC_id=Lane_z2heGRQ553 → template_id=Lane_z2heGRQ553
+  [PROGRESS]   Step 3: ACC_id=Lane_KZJDGp6UbD → template_id=Lane_KZJDGp6UbD
+  [PROGRESS]   Step 4: ACC_id=Lane_9vemLNJQov → template_id=Lane_9vemLNJQov
+  [PROGRESS]   Step 5: ACC_id=Lane_gzvwfZReOd → template_id=Lane_gzvwfZReOd
+[DEBUG] ReviewDataAccess.batch_insert_review_steps called with 5 steps
+[DEBUG] SQL (first 300 chars): 
+                INSERT INTO review_progress (review_id, step_id, template_step_id, step_name, step_type, step_order, status, assigned_to, claimed_by, completed_by, action_by, candidates, decision, comments, notes, due_date, started_at, completed_at, end_time, attachments)
+                VALUES (%s...
+[DEBUG] First step data: review_id=7, step_id=Lane_jLttUcaAwN, status=SUBMITTED
+[DEBUG] Inserted 5 rows
+  [PROGRESS] ✓ Batch INSERT: 5 records
+  [CURRENT_STEP] All steps completed (max_order=5, total=5)
+  SUCCESS: Batch insert 2 file versions (duration: 1.92s)
+  [WORKFLOW] Found workflow via workflow_id: test (5 steps)
+  [CANDIDATES] Creating candidates from workflow template (review_id=8, 5 steps)
+  [CANDIDATES]   Step 1: 发起者 (template_id=Lane_jLttUcaAwN)
+  [CANDIDATES]   Step 2: 初始审阅 1 (template_id=Lane_z2heGRQ553)
+  [CANDIDATES]   Step 3: 初始审阅 2 (template_id=Lane_KZJDGp6UbD)
+  [CANDIDATES]   Step 4: 初始审阅 3 (template_id=Lane_9vemLNJQov)
+  [CANDIDATES]   Step 5: 最终审阅 (template_id=Lane_gzvwfZReOd)
+  [CANDIDATES] ✓ Created 5 complete step candidate configurations from template
+  [PROGRESS] Syncing progress with template mapping (review_id=8, 5 progress records)
+  [PROGRESS]   Step 1: ACC_id=Lane_jLttUcaAwN → template_id=Lane_jLttUcaAwN
+  [PROGRESS]   Step 2: ACC_id=Lane_z2heGRQ553 → template_id=Lane_z2heGRQ553
+  [PROGRESS]   Step 3: ACC_id=Lane_KZJDGp6UbD → template_id=Lane_KZJDGp6UbD
+  [PROGRESS]   Step 4: ACC_id=Lane_9vemLNJQov → template_id=Lane_9vemLNJQov
+  [PROGRESS]   Step 5: ACC_id=Lane_gzvwfZReOd → template_id=Lane_gzvwfZReOd
+[DEBUG] ReviewDataAccess.batch_insert_review_steps called with 5 steps
+[DEBUG] SQL (first 300 chars): 
+                INSERT INTO review_progress (review_id, step_id, template_step_id, step_name, step_type, step_order, status, assigned_to, claimed_by, completed_by, action_by, candidates, decision, comments, notes, due_date, started_at, completed_at, end_time, attachments)
+                VALUES (%s...
+[DEBUG] First step data: review_id=8, step_id=Lane_jLttUcaAwN, status=SUBMITTED
+[DEBUG] Inserted 5 rows
+  [PROGRESS] ✓ Batch INSERT: 5 records
+  [CURRENT_STEP] All steps completed (max_order=5, total=5)
+  SUCCESS: Batch insert 1 file versions (duration: 1.98s)
+  [WORKFLOW] Found workflow via workflow_id: test (5 steps)
+  [CANDIDATES] Creating candidates from workflow template (review_id=9, 5 steps)
+  [CANDIDATES]   Step 1: 发起者 (template_id=Lane_jLttUcaAwN)
+  [CANDIDATES]   Step 2: 初始审阅 1 (template_id=Lane_z2heGRQ553)
+  [CANDIDATES]   Step 3: 初始审阅 2 (template_id=Lane_KZJDGp6UbD)
+  [CANDIDATES]   Step 4: 初始审阅 3 (template_id=Lane_9vemLNJQov)
+  [CANDIDATES]   Step 5: 最终审阅 (template_id=Lane_gzvwfZReOd)
+  [CANDIDATES] ✓ Created 5 complete step candidate configurations from template
+  [PROGRESS] Syncing progress with template mapping (review_id=9, 4 progress records)
+  [PROGRESS]   Step 1: ACC_id=Lane_jLttUcaAwN → template_id=Lane_jLttUcaAwN
+  [PROGRESS]   Step 2: ACC_id=Lane_z2heGRQ553 → template_id=Lane_z2heGRQ553
+  [PROGRESS]   Step 3: ACC_id=Lane_KZJDGp6UbD → template_id=Lane_KZJDGp6UbD
+  [PROGRESS]   Step 4: ACC_id=Lane_9vemLNJQov → template_id=Lane_9vemLNJQov
+[DEBUG] ReviewDataAccess.batch_insert_review_steps called with 4 steps
+[DEBUG] SQL (first 300 chars): 
+                INSERT INTO review_progress (review_id, step_id, template_step_id, step_name, step_type, step_order, status, assigned_to, claimed_by, completed_by, action_by, candidates, decision, comments, notes, due_date, started_at, completed_at, end_time, attachments)
+                VALUES (%s...
+[DEBUG] First step data: review_id=9, step_id=Lane_jLttUcaAwN, status=SUBMITTED
+[DEBUG] Inserted 4 rows
+  [PROGRESS] ✓ Batch INSERT: 4 records
+  [CURRENT_STEP] Creating progress for current step 5: 最终审阅 (template_id=Lane_gzvwfZReOd)
+[DEBUG] ReviewDataAccess.batch_insert_review_steps called with 1 steps
+[DEBUG] SQL (first 300 chars): 
+                INSERT INTO review_progress (review_id, step_id, template_step_id, step_name, step_type, step_order, status, assigned_to, claimed_by, completed_by, action_by, candidates, decision, comments, notes, due_date, started_at, completed_at, end_time, attachments)
+                VALUES (%s...
+[DEBUG] First step data: review_id=9, step_id=Lane_gzvwfZReOd, status=PENDING
+[DEBUG] Inserted 1 rows
+  [CURRENT_STEP] ✓ Created current step progress (inserted=1)
+  SUCCESS: Batch insert 1 file versions (duration: 2.00s)
+  [WORKFLOW] Found workflow via workflow_id: test (5 steps)
+  [CANDIDATES] Creating candidates from workflow template (review_id=10, 5 steps)
+  [CANDIDATES]   Step 1: 发起者 (template_id=Lane_jLttUcaAwN)
+  [CANDIDATES]   Step 2: 初始审阅 1 (template_id=Lane_z2heGRQ553)
+  [CANDIDATES]   Step 3: 初始审阅 2 (template_id=Lane_KZJDGp6UbD)
+  [CANDIDATES]   Step 4: 初始审阅 3 (template_id=Lane_9vemLNJQov)
+  [CANDIDATES]   Step 5: 最终审阅 (template_id=Lane_gzvwfZReOd)
+  [CANDIDATES] ✓ Created 5 complete step candidate configurations from template
+  [PROGRESS] Syncing progress with template mapping (review_id=10, 5 progress records)
+  [PROGRESS]   Step 1: ACC_id=Lane_jLttUcaAwN → template_id=Lane_jLttUcaAwN
+  [PROGRESS]   Step 2: ACC_id=Lane_z2heGRQ553 → template_id=Lane_z2heGRQ553
+  [PROGRESS]   Step 3: ACC_id=Lane_KZJDGp6UbD → template_id=Lane_KZJDGp6UbD
+  [PROGRESS]   Step 4: ACC_id=Lane_9vemLNJQov → template_id=Lane_9vemLNJQov
+  [PROGRESS]   Step 5: ACC_id=Lane_gzvwfZReOd → template_id=Lane_gzvwfZReOd
+[DEBUG] ReviewDataAccess.batch_insert_review_steps called with 5 steps
+[DEBUG] SQL (first 300 chars): 
+                INSERT INTO review_progress (review_id, step_id, template_step_id, step_name, step_type, step_order, status, assigned_to, claimed_by, completed_by, action_by, candidates, decision, comments, notes, due_date, started_at, completed_at, end_time, attachments)
+                VALUES (%s...
+[DEBUG] First step data: review_id=10, step_id=Lane_jLttUcaAwN, status=SUBMITTED
+[DEBUG] Inserted 5 rows
+  [PROGRESS] ✓ Batch INSERT: 5 records
+  [CURRENT_STEP] All steps completed (max_order=5, total=5)
+  SUCCESS: Batch insert 1 file versions (duration: 2.00s)
+  [WORKFLOW] Found workflow via workflow_id: test (5 steps)
+  [CANDIDATES] Creating candidates from workflow template (review_id=11, 5 steps)
+  [CANDIDATES]   Step 1: 发起者 (template_id=Lane_jLttUcaAwN)
+  [CANDIDATES]   Step 2: 初始审阅 1 (template_id=Lane_z2heGRQ553)
+  [CANDIDATES]   Step 3: 初始审阅 2 (template_id=Lane_KZJDGp6UbD)
+  [CANDIDATES]   Step 4: 初始审阅 3 (template_id=Lane_9vemLNJQov)
+  [CANDIDATES]   Step 5: 最终审阅 (template_id=Lane_gzvwfZReOd)
+  [CANDIDATES] ✓ Created 5 complete step candidate configurations from template
+  [PROGRESS] Syncing progress with template mapping (review_id=11, 5 progress records)
+  [PROGRESS]   Step 1: ACC_id=Lane_jLttUcaAwN → template_id=Lane_jLttUcaAwN
+  [PROGRESS]   Step 2: ACC_id=Lane_z2heGRQ553 → template_id=Lane_z2heGRQ553
+  [PROGRESS]   Step 3: ACC_id=Lane_KZJDGp6UbD → template_id=Lane_KZJDGp6UbD
+  [PROGRESS]   Step 4: ACC_id=Lane_9vemLNJQov → template_id=Lane_9vemLNJQov
+  [PROGRESS]   Step 5: ACC_id=Lane_gzvwfZReOd → template_id=Lane_gzvwfZReOd
+[DEBUG] ReviewDataAccess.batch_insert_review_steps called with 5 steps
+[DEBUG] SQL (first 300 chars): 
+                INSERT INTO review_progress (review_id, step_id, template_step_id, step_name, step_type, step_order, status, assigned_to, claimed_by, completed_by, action_by, candidates, decision, comments, notes, due_date, started_at, completed_at, end_time, attachments)
+                VALUES (%s...
+[DEBUG] First step data: review_id=11, step_id=Lane_jLttUcaAwN, status=SUBMITTED
+[DEBUG] Inserted 5 rows
+  [PROGRESS] ✓ Batch INSERT: 5 records
+  [CURRENT_STEP] All steps completed (max_order=5, total=5)
+  SUCCESS: Batch insert 2 file versions (duration: 1.93s)
+  [WORKFLOW] Found workflow via workflow_id: test (5 steps)
+  [CANDIDATES] Creating candidates from workflow template (review_id=12, 5 steps)
+  [CANDIDATES]   Step 1: 发起者 (template_id=Lane_jLttUcaAwN)
+  [CANDIDATES]   Step 2: 初始审阅 1 (template_id=Lane_z2heGRQ553)
+  [CANDIDATES]   Step 3: 初始审阅 2 (template_id=Lane_KZJDGp6UbD)
+  [CANDIDATES]   Step 4: 初始审阅 3 (template_id=Lane_9vemLNJQov)
+  [CANDIDATES]   Step 5: 最终审阅 (template_id=Lane_gzvwfZReOd)
+  [CANDIDATES] ✓ Created 5 complete step candidate configurations from template
+  [PROGRESS] Syncing progress with template mapping (review_id=12, 5 progress records)
+  [PROGRESS]   Step 1: ACC_id=Lane_jLttUcaAwN → template_id=Lane_jLttUcaAwN
+  [PROGRESS]   Step 2: ACC_id=Lane_z2heGRQ553 → template_id=Lane_z2heGRQ553
+  [PROGRESS]   Step 3: ACC_id=Lane_KZJDGp6UbD → template_id=Lane_KZJDGp6UbD
+  [PROGRESS]   Step 4: ACC_id=Lane_9vemLNJQov → template_id=Lane_9vemLNJQov
+  [PROGRESS]   Step 5: ACC_id=Lane_gzvwfZReOd → template_id=Lane_gzvwfZReOd
+[DEBUG] ReviewDataAccess.batch_insert_review_steps called with 5 steps
+[DEBUG] SQL (first 300 chars): 
+                INSERT INTO review_progress (review_id, step_id, template_step_id, step_name, step_type, step_order, status, assigned_to, claimed_by, completed_by, action_by, candidates, decision, comments, notes, due_date, started_at, completed_at, end_time, attachments)
+                VALUES (%s...
+[DEBUG] First step data: review_id=12, step_id=Lane_jLttUcaAwN, status=SUBMITTED
+[DEBUG] Inserted 5 rows
+  [PROGRESS] ✓ Batch INSERT: 5 records
+  [CURRENT_STEP] All steps completed (max_order=5, total=5)
+  SUCCESS: Batch insert 1 file versions (duration: 1.92s)
+  [WORKFLOW] Found workflow via workflow_id: test 2 (4 steps)
+  [CANDIDATES] Creating candidates from workflow template (review_id=13, 4 steps)
+  [CANDIDATES]   Step 1: 发起者 (template_id=Lane_ANVIdOO3VJ)
+  [CANDIDATES]   Step 2: 初始审阅 1 (template_id=Lane_IzseBGWpka)
+  [CANDIDATES]   Step 3: 初始审阅 2 (template_id=Lane_DEWBiTbIT4)
+  [CANDIDATES]   Step 4: 最终审阅 (template_id=Lane_N2PnxyPZWk)
+  [CANDIDATES] ✓ Created 4 complete step candidate configurations from template
+  [PROGRESS] Syncing progress with template mapping (review_id=13, 9 progress records)
+  [PROGRESS]   Step 1: ACC_id=Lane_307YMjToR8 → template_id=Lane_ANVIdOO3VJ
+  [PROGRESS]   Step 2: ACC_id=Lane_FSlQKgupCf → template_id=Lane_IzseBGWpka
+  [PROGRESS]   Step 3: ACC_id=Lane_YpUrxFJ5ys → template_id=Lane_DEWBiTbIT4
+  [PROGRESS]   Step 4: ACC_id=Lane_YpUrxFJ5ys → template_id=Lane_N2PnxyPZWk
+  [WARNING] Cannot find template step for order 5 (total: 4)
+  [WARNING] Cannot find template step for order 6 (total: 4)
+  [WARNING] Cannot find template step for order 7 (total: 4)
+  [WARNING] Cannot find template step for order 8 (total: 4)
+  [WARNING] Cannot find template step for order 9 (total: 4)
+[DEBUG] ReviewDataAccess.batch_insert_review_steps called with 9 steps
+[DEBUG] SQL (first 300 chars): 
+                INSERT INTO review_progress (review_id, step_id, template_step_id, step_name, step_type, step_order, status, assigned_to, claimed_by, completed_by, action_by, candidates, decision, comments, notes, due_date, started_at, completed_at, end_time, attachments)
+                VALUES (%s...
+[DEBUG] First step data: review_id=13, step_id=Lane_307YMjToR8, status=SUBMITTED
+[DEBUG] Inserted 3 rows
+  [PROGRESS] ✓ Batch INSERT: 3 records
+  [CURRENT_STEP] All steps completed (max_order=9, total=4)
+  SUCCESS: Batch insert 2 file versions (duration: 1.96s)
+  [WORKFLOW] Found workflow via workflow_id: test (5 steps)
+  [CANDIDATES] Creating candidates from workflow template (review_id=14, 5 steps)
+  [CANDIDATES]   Step 1: 发起者 (template_id=Lane_jLttUcaAwN)
+  [CANDIDATES]   Step 2: 初始审阅 1 (template_id=Lane_z2heGRQ553)
+  [CANDIDATES]   Step 3: 初始审阅 2 (template_id=Lane_KZJDGp6UbD)
+  [CANDIDATES]   Step 4: 初始审阅 3 (template_id=Lane_9vemLNJQov)
+  [CANDIDATES]   Step 5: 最终审阅 (template_id=Lane_gzvwfZReOd)
+  [CANDIDATES] ✓ Created 5 complete step candidate configurations from template
+  [PROGRESS] Syncing progress with template mapping (review_id=14, 5 progress records)
+  [PROGRESS]   Step 1: ACC_id=Lane_jLttUcaAwN → template_id=Lane_jLttUcaAwN
+  [PROGRESS]   Step 2: ACC_id=Lane_z2heGRQ553 → template_id=Lane_z2heGRQ553
+  [PROGRESS]   Step 3: ACC_id=Lane_KZJDGp6UbD → template_id=Lane_KZJDGp6UbD
+  [PROGRESS]   Step 4: ACC_id=Lane_9vemLNJQov → template_id=Lane_9vemLNJQov
+  [PROGRESS]   Step 5: ACC_id=Lane_gzvwfZReOd → template_id=Lane_gzvwfZReOd
+[DEBUG] ReviewDataAccess.batch_insert_review_steps called with 5 steps
+[DEBUG] SQL (first 300 chars): 
+                INSERT INTO review_progress (review_id, step_id, template_step_id, step_name, step_type, step_order, status, assigned_to, claimed_by, completed_by, action_by, candidates, decision, comments, notes, due_date, started_at, completed_at, end_time, attachments)
+                VALUES (%s...
+[DEBUG] First step data: review_id=14, step_id=Lane_jLttUcaAwN, status=SUBMITTED
+[DEBUG] Inserted 5 rows
+  [PROGRESS] ✓ Batch INSERT: 5 records
+  [CURRENT_STEP] All steps completed (max_order=5, total=5)
+  SUCCESS: Batch insert 3 file versions (duration: 2.06s)
+  [WORKFLOW] Found workflow via workflow_id: test (5 steps)
+  [CANDIDATES] Creating candidates from workflow template (review_id=15, 5 steps)
+  [CANDIDATES]   Step 1: 发起者 (template_id=Lane_jLttUcaAwN)
+  [CANDIDATES]   Step 2: 初始审阅 1 (template_id=Lane_z2heGRQ553)
+  [CANDIDATES]   Step 3: 初始审阅 2 (template_id=Lane_KZJDGp6UbD)
+  [CANDIDATES]   Step 4: 初始审阅 3 (template_id=Lane_9vemLNJQov)
+  [CANDIDATES]   Step 5: 最终审阅 (template_id=Lane_gzvwfZReOd)
+  [CANDIDATES] ✓ Created 5 complete step candidate configurations from template
+  [PROGRESS] Syncing progress with template mapping (review_id=15, 5 progress records)
+  [PROGRESS]   Step 1: ACC_id=Lane_jLttUcaAwN → template_id=Lane_jLttUcaAwN
+  [PROGRESS]   Step 2: ACC_id=Lane_z2heGRQ553 → template_id=Lane_z2heGRQ553
+  [PROGRESS]   Step 3: ACC_id=Lane_KZJDGp6UbD → template_id=Lane_KZJDGp6UbD
+  [PROGRESS]   Step 4: ACC_id=Lane_9vemLNJQov → template_id=Lane_9vemLNJQov
+  [PROGRESS]   Step 5: ACC_id=Lane_gzvwfZReOd → template_id=Lane_gzvwfZReOd
+[DEBUG] ReviewDataAccess.batch_insert_review_steps called with 5 steps
+[DEBUG] SQL (first 300 chars): 
+                INSERT INTO review_progress (review_id, step_id, template_step_id, step_name, step_type, step_order, status, assigned_to, claimed_by, completed_by, action_by, candidates, decision, comments, notes, due_date, started_at, completed_at, end_time, attachments)
+                VALUES (%s...
+[DEBUG] First step data: review_id=15, step_id=Lane_jLttUcaAwN, status=SUBMITTED
+[DEBUG] Inserted 5 rows
+  [PROGRESS] ✓ Batch INSERT: 5 records
+  [CURRENT_STEP] All steps completed (max_order=5, total=5)
+  SUCCESS: 同步文件版本: 24 个
+  SUCCESS: 同步进度步骤: 82 个
+
+============================================================
+[STATS] Performance statistics:
+   API调用阶段: 2.61秒 (1.5%)
+   数据库写入: 173.59秒 (98.5%)
+   总耗时: 176.21秒
+   平均每个评审: 11.75秒
+
+✓ 异步并行同步完成
+   同步的评审: 15
+   更新的评审: 0
+   文件版本: 24
+   进度步骤: 82
+
+================================================================================
+SYNCHRONIZATION COMPLETE
+================================================================================
+
+Duration: 196.29 seconds
+
+Workflows:
+  Total: 6
+  Synced: 6
+
+Reviews:
+  Total: 15
+  Synced: 15
+
+File Versions:
+  Total: 24
+  Synced: 24
+
+Progress Steps:
+  Total: 82
+  Synced: 82
+
+Workflow Templates:
+  Total: 0
+  Synced: 0
+
+No errors occurred!
+
+================================================================================
+2025-11-20 19:34:18,707 - INFO -   [OK] Full sync completed successfully
+2025-11-20 19:34:18,707 - INFO -   [OK] Completed in 196.30s
+2025-11-20 19:34:18,707 - INFO - 
+[STEP 5/7] Generating performance analysis...
+2025-11-20 19:34:18,707 - INFO -   Description: Analyze performance metrics and identify bottlenecks
+
+================================================================================
+[PERFORMANCE ANALYSIS REPORT]
+================================================================================
+
+Summary:
+  Total Time: 176.21s
+  API Calls: 33 times (Success Rate: 100.0%)
+  Cache Hit Rate: 31.2%
+  DB Queries: 16 times
+  Memory Usage: 0.00MB
+
+Timing Breakdown:
+  sync_review_progress....................   109.22s ( 62.0%)
+  sync_review_file_versions...............    29.45s ( 16.7%)
+  api_call................................    25.25s ( 14.3%)
+  batch_upsert_reviews....................     4.99s (  2.8%)
+
+[OK] No significant bottlenecks detected
+
+================================================================================
+2025-11-20 19:34:18,707 - INFO -   [OK] Completed in 0.00s
+2025-11-20 19:34:18,707 - INFO - 
+[STEP 6/8] Verifying candidates configuration...
+2025-11-20 19:34:18,707 - INFO -   Description: Check review_step_candidates table and data integrity

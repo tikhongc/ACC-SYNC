@@ -1,0 +1,217 @@
+{
+  "files": [
+    {
+      "id": "urn:adsk.wipprod:dm.lineage:Joh0pDGHR56b8J8XqW8IFA",
+      "name": "1280px-Kwun_Lung_Lau.jpg",
+      "path": "ACC Sync/Project Files.1/1280px-Kwun_Lung_Lau.jpg",
+      "original_path": "Project Files.1/1280px-Kwun_Lung_Lau.jpg",
+      "folder_path": "Project Files.1",
+      "extension": "jpg",
+      "type": "JPEG图片",
+      "size": 256167,
+      "versions": 1,
+      "last_modified": "2025-10-20T03:47:10.0000000Z",
+      "downloadable": true,
+      "original_name": "1280px-Kwun_Lung_Lau.jpg"
+    },
+    {
+      "id": "urn:adsk.wipprod:dm.lineage:WSo5NzP_SwuhBNrTTNJq-w",
+      "name": "Floor Plan Sample.dwg",
+      "path": "ACC Sync/Project Files.1/Floor Plan Sample.dwg",
+      "original_path": "Project Files.1/Floor Plan Sample.dwg",
+      "folder_path": "Project Files.1",
+      "extension": "dwg",
+      "type": "AutoCAD图纸",
+      "size": 187778,
+      "versions": 1,
+      "last_modified": "2025-10-22T03:20:40.0000000Z",
+      "downloadable": true,
+      "original_name": "Floor Plan Sample.dwg"
+    },
+    {
+      "id": "urn:adsk.wipprod:dm.lineage:BpecaZkCRhSpekT3CXYIiA",
+      "name": "School.rvt",
+      "path": "ACC Sync/Project Files.1/School.rvt",
+      "original_path": "Project Files.1/School.rvt",
+      "folder_path": "Project Files.1",
+      "extension": "rvt",
+      "type": "Revit模型",
+      "size": 16560128,
+      "versions": 1,
+      "last_modified": "2025-10-22T03:20:45.0000000Z",
+      "downloadable": true,
+      "original_name": "School.rvt"
+    },
+    {
+      "id": "urn:adsk.wipprod:dm.lineage:shML68ELR-CTm8bKf7YyFQ",
+      "name": "TEST_CAD.pdf",
+      "path": "ACC Sync/Project Files.1/TEST_CAD.pdf",
+      "original_path": "Project Files.1/TEST_CAD.pdf",
+      "folder_path": "Project Files.1",
+      "extension": "pdf",
+      "type": "PDF文档",
+      "size": 2465805,
+      "versions": 1,
+      "last_modified": "2025-10-22T03:20:40.0000000Z",
+      "downloadable": true,
+      "original_name": "TEST_CAD.pdf"
+    },
+    {
+      "id": "urn:adsk.wipprod:dm.lineage:d4dP7g5OSBqWUfWqPBP2tQ",
+      "name": "ssss.mp4",
+      "path": "ACC Sync/Project Files.1/ssss.mp4",
+      "original_path": "Project Files.1/ssss.mp4",
+      "folder_path": "Project Files.1",
+      "extension": "mp4",
+      "type": "MP4视频",
+      "size": 12226263,
+      "versions": 1,
+      "last_modified": "2025-10-22T03:20:44.0000000Z",
+      "downloadable": true,
+      "original_name": "ssss.mp4"
+    },
+    {
+      "id": "urn:adsk.wipprod:dm.lineage:N0ZqISU3Qw-ZmDsZikbp4w",
+      "name": "BIM Integration Prototype 1.0.pdf",
+      "path": "ACC Sync/Project Files.2/BIM Integration Prototype 1.0.pdf",
+      "original_path": "Project Files.2/BIM Integration Prototype 1.0.pdf",
+      "folder_path": "Project Files.2",
+      "extension": "pdf",
+      "type": "PDF文档",
+      "size": 2420019,
+      "versions": 1,
+      "last_modified": "2025-10-20T03:48:06.0000000Z",
+      "downloadable": true,
+      "original_name": "BIM Integration Prototype 1.0.pdf"
+    },
+    {
+      "id": "urn:adsk.wipprod:dm.lineage:m8aOlqG2TG6SNIvt58U-Zg",
+      "name": "Acc Back up 需求文档.docx",
+      "path": "ACC Sync/Acc Back up 需求文档.docx",
+      "original_path": "Acc Back up 需求文档.docx",
+      "folder_path": "",
+      "extension": "docx",
+      "type": "Word文档",
+      "size": 6214133,
+      "versions": 1,
+      "last_modified": "2025-10-20T03:47:40.0000000Z",
+      "downloadable": true,
+      "original_name": "Acc Back up 需求文档.docx"
+    }
+  ],
+  "files_by_type": {
+    "JPEG图片": [
+      {
+        "id": "urn:adsk.wipprod:dm.lineage:Joh0pDGHR56b8J8XqW8IFA",
+        "name": "1280px-Kwun_Lung_Lau.jpg",
+        "path": "ACC Sync/Project Files.1/1280px-Kwun_Lung_Lau.jpg",
+        "original_path": "Project Files.1/1280px-Kwun_Lung_Lau.jpg",
+        "folder_path": "Project Files.1",
+        "extension": "jpg",
+        "type": "JPEG图片",
+        "size": 256167,
+        "versions": 1,
+        "last_modified": "2025-10-20T03:47:10.0000000Z",
+        "downloadable": true,
+        "original_name": "1280px-Kwun_Lung_Lau.jpg"
+      }
+    ],
+    "AutoCAD图纸": [
+      {
+        "id": "urn:adsk.wipprod:dm.lineage:WSo5NzP_SwuhBNrTTNJq-w",
+        "name": "Floor Plan Sample.dwg",
+        "path": "ACC Sync/Project Files.1/Floor Plan Sample.dwg",
+        "original_path": "Project Files.1/Floor Plan Sample.dwg",
+        "folder_path": "Project Files.1",
+        "extension": "dwg",
+        "type": "AutoCAD图纸",
+        "size": 187778,
+        "versions": 1,
+        "last_modified": "2025-10-22T03:20:40.0000000Z",
+        "downloadable": true,
+        "original_name": "Floor Plan Sample.dwg"
+      }
+    ],
+    "Revit模型": [
+      {
+        "id": "urn:adsk.wipprod:dm.lineage:BpecaZkCRhSpekT3CXYIiA",
+        "name": "School.rvt",
+        "path": "ACC Sync/Project Files.1/School.rvt",
+        "original_path": "Project Files.1/School.rvt",
+        "folder_path": "Project Files.1",
+        "extension": "rvt",
+        "type": "Revit模型",
+        "size": 16560128,
+        "versions": 1,
+        "last_modified": "2025-10-22T03:20:45.0000000Z",
+        "downloadable": true,
+        "original_name": "School.rvt"
+      }
+    ],
+    "PDF文档": [
+      {
+        "id": "urn:adsk.wipprod:dm.lineage:shML68ELR-CTm8bKf7YyFQ",
+        "name": "TEST_CAD.pdf",
+        "path": "ACC Sync/Project Files.1/TEST_CAD.pdf",
+        "original_path": "Project Files.1/TEST_CAD.pdf",
+        "folder_path": "Project Files.1",
+        "extension": "pdf",
+        "type": "PDF文档",
+        "size": 2465805,
+        "versions": 1,
+        "last_modified": "2025-10-22T03:20:40.0000000Z",
+        "downloadable": true,
+        "original_name": "TEST_CAD.pdf"
+      },
+      {
+        "id": "urn:adsk.wipprod:dm.lineage:N0ZqISU3Qw-ZmDsZikbp4w",
+        "name": "BIM Integration Prototype 1.0.pdf",
+        "path": "ACC Sync/Project Files.2/BIM Integration Prototype 1.0.pdf",
+        "original_path": "Project Files.2/BIM Integration Prototype 1.0.pdf",
+        "folder_path": "Project Files.2",
+        "extension": "pdf",
+        "type": "PDF文档",
+        "size": 2420019,
+        "versions": 1,
+        "last_modified": "2025-10-20T03:48:06.0000000Z",
+        "downloadable": true,
+        "original_name": "BIM Integration Prototype 1.0.pdf"
+      }
+    ],
+    "MP4视频": [
+      {
+        "id": "urn:adsk.wipprod:dm.lineage:d4dP7g5OSBqWUfWqPBP2tQ",
+        "name": "ssss.mp4",
+        "path": "ACC Sync/Project Files.1/ssss.mp4",
+        "original_path": "Project Files.1/ssss.mp4",
+        "folder_path": "Project Files.1",
+        "extension": "mp4",
+        "type": "MP4视频",
+        "size": 12226263,
+        "versions": 1,
+        "last_modified": "2025-10-22T03:20:44.0000000Z",
+        "downloadable": true,
+        "original_name": "ssss.mp4"
+      }
+    ],
+    "Word文档": [
+      {
+        "id": "urn:adsk.wipprod:dm.lineage:m8aOlqG2TG6SNIvt58U-Zg",
+        "name": "Acc Back up 需求文档.docx",
+        "path": "ACC Sync/Acc Back up 需求文档.docx",
+        "original_path": "Acc Back up 需求文档.docx",
+        "folder_path": "",
+        "extension": "docx",
+        "type": "Word文档",
+        "size": 6214133,
+        "versions": 1,
+        "last_modified": "2025-10-20T03:47:40.0000000Z",
+        "downloadable": true,
+        "original_name": "Acc Back up 需求文档.docx"
+      }
+    ]
+  },
+  "total_count": 7,
+  "downloadable_count": 7,
+  "total_size": 40330293
+}

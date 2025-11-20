@@ -1,0 +1,5 @@
+﻿id,bim360_account_id,bim360_project_id,sequence_id,title,status,create_user_id,create_user_name,docs_count,created_at,updated_at,create_user_company_id,create_user_company_name
+38afb8fd-c4d1-4d49-8750-84c1945479ba,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,1,test 1,2,3ca61ff2-ac03-42a3-a2b4-686afc7d399a,Khalil Chiu,3,2025-10-27 06:24:00.538,2025-10-27 06:24:54.852,"",""
+856313e9-272c-4048-8987-e13a58ab3b9c,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,2,06 isBIM[TEST 2],2,3ca61ff2-ac03-42a3-a2b4-686afc7d399a,Khalil Chiu,2,2025-10-27 06:25:45.581,2025-10-31 07:59:38.245,"",""
+1229a9a2-884d-42e0-b82c-a5fe86d00a93,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,3,Floor Plan Sample,2,d9ba10a7-ee0b-42b1-a633-4b11b3b4a381,Eric isBIM,1,2025-10-31 08:02:54.505,2025-10-31 08:02:57.559,"",""
+31624a21-9c8f-4389-9705-001c5f2d817f,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,4,06 isBIM[TEST 2],2,3ca61ff2-ac03-42a3-a2b4-686afc7d399a,Khalil Chiu,2,2025-10-31 09:00:19.996,2025-10-31 09:00:51.243,"",""

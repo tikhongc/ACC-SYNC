@@ -46,44 +46,44 @@ def get_npm_command():
 
 def start_flask():
     """启动Flask后端服务器"""
-    print("🔧 启动Flask后端服务器...")
+    print("Starting Flask backend server...")
     os.environ['FLASK_ENV'] = 'development'
     os.environ['FLASK_DEBUG'] = '1'
     subprocess.run([sys.executable, 'app.py'])
 
 def start_vue():
     """启动Vue前端开发服务器"""
-    print("🎨 启动Vue前端开发服务器...")
+    print("Starting Vue frontend development server...")
     
     # 检查是否安装了Node.js
     try:
         result = subprocess.run(['node', '--version'], capture_output=True, check=True, text=True)
-        print(f"✅ Node.js版本: {result.stdout.strip()}")
+        print(f"[OK] Node.js version: {result.stdout.strip()}")
     except (subprocess.CalledProcessError, FileNotFoundError):
-        print("❌ 未找到Node.js，请先安装Node.js")
-        print("📥 下载地址: https://nodejs.org/")
-        print("💡 或者直接运行Flask后端: python app.py")
+        print("[ERROR] 未找到Node.js，请先安装Node.js")
+        print("下载地址: https://nodejs.org/")
+        print("或者直接运行Flask后端: python app.py")
         return
     
     # 检查npm命令可用性
     npm_cmd = get_npm_command()
     if not npm_cmd:
-        print("❌ 未找到可用的npm命令")
-        print("🔧 可能的解决方案:")
+        print("[ERROR] 未找到可用的npm命令")
+        print("可能的解决方案:")
         print("   1. 重新安装Node.js: https://nodejs.org/")
         print("   2. 检查系统PATH是否包含npm路径")
         print("   3. 重启命令行/IDE后重试")
-        print("💡 或者运行: python start_flask_only.py 仅启动后端")
+        print("或者运行: python start_flask_only.py 仅启动后端")
         return
     else:
         if npm_cmd in ['npm', 'npx']:
             try:
                 result = subprocess.run([npm_cmd, '--version'], capture_output=True, check=True, text=True)
-                print(f"✅ {npm_cmd}版本: {result.stdout.strip()}")
+                print(f"[OK] {npm_cmd}版本: {result.stdout.strip()}")
             except:
-                print(f"✅ 找到{npm_cmd}命令")
+                print(f"[OK] 找到{npm_cmd}命令")
         else:
-            print(f"✅ 找到npm命令: {npm_cmd}")
+            print(f"[OK] 找到npm命令: {npm_cmd}")
     
     # 保存当前目录
     original_dir = os.getcwd()
@@ -92,23 +92,23 @@ def start_vue():
         # 切换到frontend目录
         frontend_path = os.path.join(original_dir, 'frontend')
         if not os.path.exists(frontend_path):
-            print("❌ frontend目录不存在")
+            print("[ERROR] frontend目录不存在")
             return
             
         os.chdir(frontend_path)
-        print(f"📁 切换到目录: {os.getcwd()}")
+        print(f"切换到目录: {os.getcwd()}")
         
         # 检查package.json是否存在
         if not os.path.exists('package.json'):
-            print("❌ frontend/package.json不存在")
+            print("[ERROR] frontend/package.json不存在")
             return
         
         # 检查是否安装了依赖
         if not os.path.exists('node_modules'):
-            print("📦 安装前端依赖...")
+            print("安装前端依赖...")
             npm_cmd = get_npm_command()
             if not npm_cmd:
-                print("❌ 无法找到可用的npm命令")
+                print("[ERROR] 无法找到可用的npm命令")
                 return
             
             try:
@@ -116,19 +116,19 @@ def start_vue():
                     result = subprocess.run(['npx', 'npm', 'install'], check=True, capture_output=True, text=True)
                 else:
                     result = subprocess.run([npm_cmd, 'install'], check=True, capture_output=True, text=True)
-                print("✅ 依赖安装成功")
+                print("[OK] 依赖安装成功")
             except subprocess.CalledProcessError as e:
-                print(f"❌ npm安装失败: {e}")
+                print(f"[ERROR] npm安装失败: {e}")
                 print(f"错误输出: {e.stderr}")
                 return
         else:
-            print("✅ 依赖已存在")
+            print("[OK] 依赖已存在")
         
-        print("🎨 启动Vue开发服务器...")
+        print("启动Vue开发服务器...")
         # 获取可用的npm命令
         npm_cmd = get_npm_command()
         if not npm_cmd:
-            print("❌ 无法找到可用的npm命令")
+            print("[ERROR] 无法找到可用的npm命令")
             return
             
         # 使用非阻塞方式启动，并显示输出
@@ -143,7 +143,9 @@ def start_vue():
             stderr=subprocess.STDOUT,
             text=True,
             bufsize=1,
-            universal_newlines=True
+            universal_newlines=True,
+            encoding='utf-8',
+            errors='replace'  # 替换无法解码的字符，避免崩溃
         )
         
         # 实时显示输出
@@ -157,20 +159,20 @@ def start_vue():
         # 检查进程退出状态
         return_code = process.poll()
         if return_code != 0:
-            print(f"❌ Vue开发服务器启动失败，退出码: {return_code}")
+            print(f"[ERROR] Vue开发服务器启动失败，退出码: {return_code}")
         
     except Exception as e:
-        print(f"❌ 启动Vue时发生错误: {e}")
+        print(f"[ERROR] 启动Vue时发生错误: {e}")
     finally:
         # 恢复原始目录
         os.chdir(original_dir)
 
 def main():
-    print("🚀 启动 ACC 表单同步 PoC 开发环境")
+    print("Starting ACC Form Sync PoC Development Environment")
     print("=" * 50)
-    print("📋 服务信息:")
-    print("   - Flask后端: http://localhost:8080")
-    print("   - Vue前端:   http://localhost:3000")
+    print("Service Information:")
+    print("   - Flask Backend: http://localhost:8080")
+    print("   - Vue Frontend:  http://localhost:3000")
     print("=" * 50)
     
     # 启动Flask后端 (在新线程中)
@@ -184,7 +186,7 @@ def main():
     try:
         start_vue()
     except KeyboardInterrupt:
-        print("\n👋 开发服务器已停止")
+        print("\nDevelopment server stopped")
 
 if __name__ == '__main__':
     main()

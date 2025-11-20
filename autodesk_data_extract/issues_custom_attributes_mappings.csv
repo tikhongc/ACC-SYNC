@@ -1,0 +1,4 @@
+﻿id,bim360_account_id,bim360_project_id,mapped_item_type,mapped_item_id,title,description,data_type,order,is_required,created_at,created_by,updated_at,updated_by
+f680842b-1eda-4958-9e00-3d36f434c0eb,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,issueSubtype,00cf73c0-2466-46cd-b7a9-cfcfe63f682a,attribute test,test,text,0,f,2025-10-23 09:14:34.717,QT725AZVMVUKV69K,2025-10-23 09:14:34.717,QT725AZVMVUKV69K
+2147f291-5495-4120-ae04-f1eb52dfccf4,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,issueSubtype,00cf73c0-2466-46cd-b7a9-cfcfe63f682a,test,test,list,1,f,2025-10-23 09:14:34.717,QT725AZVMVUKV69K,2025-10-23 09:14:34.717,QT725AZVMVUKV69K
+d3423042-01bc-4850-a4fa-df6c5b167dd5,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,issueSubtype,00cf73c0-2466-46cd-b7a9-cfcfe63f682a,custom attributes,test,paragraph,2,f,2025-10-23 09:14:34.717,QT725AZVMVUKV69K,2025-10-23 09:14:34.717,QT725AZVMVUKV69K

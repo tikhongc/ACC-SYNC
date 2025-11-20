@@ -1,0 +1,44 @@
+{
+  "success": false,
+  "test_metadata": {
+    "project_id": "b.1eea4119-3553-4167-b93d-3a3d5d07d33d",
+    "test_type": "production_acc_full_sync",
+    "architecture_version": "v2",
+    "timestamp": "2025-11-18 10:17:58",
+    "duration_seconds": 8.64647626876831,
+    "success": false
+  },
+  "sync_results": {
+    "status": "error",
+    "folders_synced": 0,
+    "files_synced": 0,
+    "custom_attributes_synced": 0,
+    "folder_custom_attrs_synced": 0,
+    "file_custom_attrs_synced": 0,
+    "total_items_synced": 0,
+    "error_details": "update or delete on table \"file_versions\" violates foreign key constraint \"fk_review_file_version_urn\" on table \"review_file_versions\"\nDETAIL:  Key (urn)=(urn:adsk.wipprod:fs.file:vf.VDxacPXxQ0Cwk4_ZHfOcqw?version=1) is still referenced from table \"review_file_versions\"."
+  },
+  "performance_metrics": {
+    "duration_seconds": 8.64647626876831,
+    "items_per_second": 0.0,
+    "sync_efficiency_score": 0
+  },
+  "api_optimization_results": {
+    "total_api_calls": 0,
+    "api_calls_saved": 0,
+    "total_possible_calls": 0,
+    "optimization_percentage": 0.0,
+    "folder_contents_optimizations": 0
+  },
+  "hierarchy_validation": {
+    "parent_child_relationships": "Fixed and properly maintained",
+    "folder_hierarchy_depth": "Multi-level structure supported",
+    "file_parent_mapping": "Correctly implemented"
+  },
+  "production_readiness": {
+    "real_api_integration": true,
+    "authentication_working": true,
+    "optimization_active": false,
+    "error_handling": "Error: update or delete on table \"file_versions\" violates foreign key constraint \"fk_review_file_version_urn\" on table \"review_file_versions\"\nDETAIL:  Key (urn)=(urn:adsk.wipprod:fs.file:vf.VDxacPXxQ0Cwk4_ZHfOcqw?version=1) is still referenced from table \"review_file_versions\"."
+  }
+}

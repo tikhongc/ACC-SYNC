@@ -55,83 +55,8 @@ def clean_project_ids(project_ids):
     return cleaned_projects
 
 
-@data_connector_bp.route('/api/data-connector/get-projects')
-def get_available_projects():
-    """获取用户可访问的项目列表（用于创建数据请求）"""
-    access_token = utils.get_access_token()
-    if not access_token:
-        return jsonify({
-            "error": "未找到 Access Token，请先进行认证",
-            "status": "unauthorized"
-        }), 401
-    
-    headers = {
-        "Authorization": f"Bearer {access_token}",
-        "Content-Type": "application/json"
-    }
-    
-    try:
-        # 复用auth_api中的项目获取逻辑
-        # 1. 获取Hub信息
-        hubs_resp = requests.get(f"{config.AUTODESK_API_BASE}/project/v1/hubs", headers=headers)
-        if hubs_resp.status_code != 200:
-            return jsonify({
-                "error": f"无法获取Hub信息: {hubs_resp.status_code}",
-                "status": "error"
-            }), 400
-        
-        hubs_data = hubs_resp.json()
-        hub_id, real_account_id, hub_name = utils.get_real_account_id(hubs_data)
-        
-        # 2. 获取Hub下的所有项目（复用auth_api逻辑）
-        projects_resp = requests.get(
-            f"{config.AUTODESK_API_BASE}/project/v1/hubs/{hub_id}/projects",
-            headers=headers,
-            timeout=(10, 15)
-        )
-        
-        if projects_resp.status_code != 200:
-            return jsonify({
-                "error": f"无法获取项目列表: {projects_resp.status_code}",
-                "status": "error"
-            }), 400
-        
-        projects_data = projects_resp.json()
-        projects_list = []
-        
-        # 3. 处理项目数据，只返回必要信息
-        for project in projects_data.get('data', []):
-            project_info = {
-                "id": project.get('id'),
-                "name": project.get('attributes', {}).get('name'),
-                "status": project.get('attributes', {}).get('status'),
-                "type": project.get('type'),
-                "isActive": is_project_active(project.get('attributes', {}).get('status'))
-            }
-            projects_list.append(project_info)
-        
-        # 4. 筛选活跃项目
-        active_projects = [p for p in projects_list if p['isActive']]
-        
-        return jsonify({
-            "status": "success",
-            "hub": {
-                "id": hub_id,
-                "name": hub_name,
-                "accountId": real_account_id
-            },
-            "projects": {
-                "total": len(projects_list),
-                "active": len(active_projects),
-                "list": projects_list
-            }
-        })
-        
-    except Exception as e:
-        return jsonify({
-            "error": f"获取项目列表失败: {str(e)}",
-            "status": "error"
-        }), 500
+# 项目获取功能已移至 auth_api.py
+# 请使用 /api/auth/projects 端点获取项目列表
 
 
 @data_connector_bp.route('/api/data-connector/test-request', methods=['POST'])
@@ -154,7 +79,7 @@ def test_data_request_format():
         request_data = request.get_json()
         if not request_data:
             return jsonify({
-                "error": "请求体不能为空",
+                "error": "Request body cannot be empty",
                 "status": "error"
             }), 400
         
@@ -231,7 +156,7 @@ def test_data_request_format():
         
         return jsonify({
             "status": "success",
-            "message": "请求格式验证完成",
+            "message": "Request format validation completed",
             "validation_errors": validation_errors,
             "is_valid": len(validation_errors) == 0,
             "test_config": test_config,
@@ -274,7 +199,7 @@ def create_batch_data_requests():
         request_data = request.get_json()
         if not request_data:
             return jsonify({
-                "error": "请求体不能为空",
+                "error": "Request body cannot be empty",
                 "status": "error"
             }), 400
         
@@ -289,7 +214,7 @@ def create_batch_data_requests():
         
         if not cleaned_projects:
             return jsonify({
-                "error": "请至少选择一个项目",
+                "error": "Please select at least one project",
                 "status": "error"
             }), 400
         
@@ -377,6 +302,40 @@ def create_batch_data_requests():
             print(f"   URL: {api_url}")
             print(f"   请求配置: {json.dumps(base_config, indent=2)}")
             print(f"   响应内容: {error_details}")
+            
+            # 特殊处理403权限错误
+            if response.status_code == 403:
+                error_message = "创建数据请求失败: 权限不足 (HTTP 403)"
+                suggestions = [
+                    "请确保您的账户具有 Executive Overview 或 Project Administrator 权限",
+                    "检查应用程序是否已在 Autodesk Platform Services 中正确注册",
+                    "确认 OAuth token 包含 data:create 权限范围",
+                    "验证所选项目的访问权限"
+                ]
+                
+                return jsonify({
+                    "error": error_message,
+                    "details": error_details,
+                    "suggestions": suggestions,
+                    "status": "error",
+                    "api_url": api_url,
+                    "request_config": base_config,
+                    "debug_info": {
+                        "status_code": response.status_code,
+                        "response_headers": dict(response.headers),
+                        "request_url": api_url,
+                        "request_body": base_config,
+                        "project_id_mapping": {
+                            "original": selected_projects,
+                            "cleaned": cleaned_projects
+                        },
+                        "permission_requirements": [
+                            "data:create scope in OAuth token",
+                            "Executive Overview or Project Administrator permissions",
+                            "Access to all selected projects"
+                        ]
+                    }
+                }), 403
             
             return jsonify({
                 "error": f"创建数据请求失败: HTTP {response.status_code}",

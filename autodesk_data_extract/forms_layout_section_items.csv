@@ -1,0 +1,5 @@
+﻿uid,layout_uid,section_uid,bim360_account_id,bim360_project_id,sort_index,label,schema,value_name,description,is_required,modifier,presets,type,display_index
+73dd8a35-aa48-4ca5-a0b9-b8743da5ad90,4bc34920-6959-4c1c-8f4a-bbb976f62fb0,f7a84b1b-d395-45e6-a2d7-53adf73bc35b,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,0,,6c8055d5-1301-46f6-9d18-8a2a208a277e,,,,,,table,1
+77ecd4ce-56e5-4a75-9499-1e5b3e4316f2,4bc34920-6959-4c1c-8f4a-bbb976f62fb0,f6b66f4e-6a74-4c9c-9fc6-aa1ab42dc9f0,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,0,,2adf5ad9-d9d3-ee42-6fd8-015c34ce474d,,,,,,table,1
+384a0275-7d61-4ec9-991e-7925c0946d50,4bc34920-6959-4c1c-8f4a-bbb976f62fb0,ec7f81e2-fac2-452f-a5f6-d365b27a27fa,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,0,,8af6c450-dd2a-32ae-0090-5493a9cc884e,,,,,,table,1
+3bee9f46-9357-4fc2-8a5e-97f564996e21,4bc34920-6959-4c1c-8f4a-bbb976f62fb0,949bb1f0-4dc2-4e4e-94f2-5a0fabb10af9,1caef42c-9fb7-4e6f-a5d1-cb89e69de6ea,1eea4119-3553-4167-b93d-3a3d5d07d33d,0,Foreman Signature,5451b042-2747-4947-8e23-17dc948efb9e,svg_val,,t,,,field,

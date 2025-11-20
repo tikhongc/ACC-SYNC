@@ -1,0 +1,92 @@
+{
+  "success": true,
+  "test_metadata": {
+    "project_id": "b.1eea4119-3553-4167-b93d-3a3d5d07d33d",
+    "test_type": "enhanced_review_sync",
+    "sync_mode": "async_parallel",
+    "max_concurrent": 10,
+    "cache_enabled": true,
+    "cache_ttl": 3600,
+    "cache_max_size": 5000,
+    "batch_size": 100,
+    "timestamp": "2025-11-20 15:34:03",
+    "duration_seconds": 170.4124264717102,
+    "success": true
+  },
+  "sync_results": {
+    "status": "success",
+    "workflows_total": 4,
+    "workflows_synced": 4,
+    "reviews_total": 14,
+    "reviews_synced": 14,
+    "file_versions_total": 22,
+    "file_versions_synced": 22,
+    "progress_steps_total": 79,
+    "progress_steps_synced": 79,
+    "total_items_synced": 119,
+    "error_count": 0,
+    "error_details": []
+  },
+  "performance_metrics": {
+    "duration_seconds": 170.4124264717102,
+    "items_per_second": 0.7154054156091458,
+    "api_calls": 31,
+    "api_time": 28.12889790534973,
+    "api_success_rate": 100.0,
+    "db_time": 32.79802131652832,
+    "db_queries": 15,
+    "cache_hit_rate": 31.11111111111111,
+    "cache_hits": 14,
+    "cache_misses": 31,
+    "memory_usage_mb": 0.0,
+    "optimization_enabled": true,
+    "estimated_speedup": 1.0914697000155529
+  },
+  "timing_breakdown": {
+    "authentication": 1.253566026687622,
+    "initialization": 0.33157992362976074,
+    "cache_check": 0.0011055469512939453,
+    "synchronization": 166.33924961090088,
+    "performance_analysis": 0.0019011497497558594,
+    "candidates_verification": 2.4831981658935547,
+    "analysis": 0.00027108192443847656,
+    "report_generation": 0.0003249645233154297
+  },
+  "optimization_features": {
+    "async_parallel_api_calls": true,
+    "aiohttp_session": true,
+    "batch_upsert_optimization": true,
+    "memory_caching": true,
+    "cache_type": "cachetools",
+    "circuit_breaker_pattern": true,
+    "smart_pagination": true,
+    "rate_limit_retry": true,
+    "performance_monitoring": true,
+    "bottleneck_analysis": true,
+    "max_concurrent": 10,
+    "cache_max_size": 5000,
+    "batch_size": 100
+  },
+  "bottleneck_analysis": [],
+  "candidates_configuration": {
+    "table_exists": true,
+    "total_configs": 67,
+    "configs_with_candidates": 67,
+    "source_distribution": {
+      "workflow_template": 67
+    },
+    "reviews_with_configs": 14,
+    "sample_configs": 5,
+    "success": true
+  },
+  "production_readiness": {
+    "real_api_integration": true,
+    "authentication_working": true,
+    "database_integration": true,
+    "cache_integration": true,
+    "error_handling": "Implemented",
+    "optimization_status": "Enhanced",
+    "async_ready": true,
+    "scalability": "High"
+  }
+}

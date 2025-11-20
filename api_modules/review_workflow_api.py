@@ -170,15 +170,15 @@ def get_project_workflows(project_id):
 
 @workflows_bp.route('/api/workflows/<project_id>/jarvis')
 def get_jarvis_workflows(project_id=None):
-    """获取 isBIM JARVIS 2025 Dev 项目的审批工作流数据"""
-    # 如果没有提供project_id，使用默认的JARVIS项目ID
+    """获取默认项目的审批工作流数据"""
+    # 如果没有提供project_id，使用默认项目ID
     if not project_id:
-        project_id = config.JARVIS_PROJECT_ID
+        project_id = config.DEFAULT_PROJECT_ID
     
     return get_project_workflows(project_id)
 
 
 @workflows_bp.route('/api/workflows/jarvis')
 def get_jarvis_workflows_simple():
-    """获取 JARVIS 项目的审批工作流数据（简化路由）"""
-    return get_project_workflows(config.JARVIS_PROJECT_ID)
+    """获取默认项目的审批工作流数据（简化路由）"""
+    return get_project_workflows(config.DEFAULT_PROJECT_ID)
