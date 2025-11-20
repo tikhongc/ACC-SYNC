@@ -2609,3 +2609,129 @@
 2025-11-20 19:38:29,236 - INFO -   [INFO] If sync fails, please run: python database_sql/test_account_sync.py
 2025-11-20 19:38:29,236 - INFO -   [SYNC] Starting synchronization (this may take several minutes)...
 2025-11-20 19:38:29,236 - INFO -   [INFO] Output will be displayed in real-time
+2025-11-20 19:42:27,496 - INFO - ================================================================================
+2025-11-20 19:42:27,496 - INFO - ENHANCED REVIEW SYNC TEST - Async + Cache + UPSERT Optimization
+2025-11-20 19:42:27,496 - INFO - ================================================================================
+2025-11-20 19:42:27,496 - INFO - Project ID: b.1eea4119-3553-4167-b93d-3a3d5d07d33d
+2025-11-20 19:42:27,496 - INFO - Max Concurrent: 10
+2025-11-20 19:42:27,497 - INFO - Cache Enabled: True
+2025-11-20 19:42:27,497 - INFO - Cache TTL: 3600s
+2025-11-20 19:42:27,497 - INFO - Cache Max Size: 5000 entries
+2025-11-20 19:42:27,497 - INFO - Batch Size: 100
+2025-11-20 19:42:27,497 - INFO - Test Start: 2025-11-20 19:42:27
+2025-11-20 19:42:27,497 - INFO - [STEP 1/7] Checking authentication status...
+2025-11-20 19:42:27,497 - INFO -   Description: Verify OAuth token is valid and not expired
+2025-11-20 19:42:27,778 - INFO - [AUTH] Successfully obtained access token
+2025-11-20 19:42:27,778 - INFO - [AUTH] Token expires in 15 minutes
+2025-11-20 19:42:27,778 - INFO -   [OK] Completed in 0.28s
+2025-11-20 19:42:27,778 - INFO - 
+[STEP 2/7] Initializing enhanced sync modules...
+2025-11-20 19:42:27,778 - INFO -   Description: Import EnhancedReviewSyncManager and create connections
+2025-11-20 19:42:27,778 - INFO -   Features:
+2025-11-20 19:42:27,778 - INFO -     - Asyncio + aiohttp for concurrent API calls
+2025-11-20 19:42:27,778 - INFO -     - Cachetools memory caching layer
+2025-11-20 19:42:27,778 - INFO -     - PostgreSQL UPSERT optimization
+2025-11-20 19:42:27,778 - INFO -     - Circuit breaker pattern
+2025-11-20 19:42:27,778 - INFO -     - Performance monitoring
+2025-11-20 19:42:27,778 - INFO -     - Note: Account sync functionality removed (use account_sync.py)
+2025-11-20 19:42:28,100 - INFO -   [OK] EnhancedReviewSyncManager initialized (review sync only)
+2025-11-20 19:42:28,101 - INFO -   [OK] Max concurrent: 10
+2025-11-20 19:42:28,101 - INFO -   [OK] Cache enabled: True
+2025-11-20 19:42:28,101 - INFO -   [OK] Cache max size: 5000
+2025-11-20 19:42:28,101 - INFO -   [OK] Batch size: 100
+2025-11-20 19:42:28,101 - INFO -   [OK] Database connection established
+2025-11-20 19:42:28,101 - INFO -   [INFO] Account sync functionality removed from this manager
+2025-11-20 19:42:28,101 - INFO -   [OK] Completed in 0.32s
+2025-11-20 19:42:28,101 - INFO - 
+[STEP 3/7] Checking cache status...
+2025-11-20 19:42:28,101 - INFO -   Description: Verify memory cache availability and configuration
+2025-11-20 19:42:28,101 - INFO -   [OK] Memory cache is enabled
+2025-11-20 19:42:28,101 - INFO -   [OK] Cache TTL: 3600s
+2025-11-20 19:42:28,101 - INFO -   [OK] Cache Max Size: 5000 entries
+2025-11-20 19:42:28,101 - INFO -   [OK] Current Size: 0 entries
+2025-11-20 19:42:28,101 - INFO -   [OK] Usage: 0.0%
+2025-11-20 19:42:28,101 - INFO -   [OK] Completed in 0.00s
+2025-11-20 19:42:28,101 - INFO - 
+[STEP 4/7] Running enhanced async synchronization...
+2025-11-20 19:42:28,101 - INFO -   Description: Clean database, recreate schema, async parallel sync
+2025-11-20 19:42:28,102 - INFO -   Sub-steps:
+2025-11-20 19:42:28,102 - INFO -     4.1 - Drop all review tables, views, and enum types
+2025-11-20 19:42:28,102 - INFO -     4.2 - Recreate schema from review_system_schema.sql
+2025-11-20 19:42:28,102 - INFO -     4.3 - [ASYNC] Fetch all workflows from ACC API
+2025-11-20 19:42:28,102 - INFO -     4.4 - [ASYNC] Fetch all reviews with smart pagination
+2025-11-20 19:42:28,102 - INFO -     4.5 - [ASYNC] Fetch file versions and progress for all reviews
+2025-11-20 19:42:28,102 - INFO -     4.6 - [CANDIDATES] Create review_step_candidates configurations
+2025-11-20 19:42:28,102 - INFO -     4.7 - [BATCH UPSERT] Bulk insert/update into database
+2025-11-20 19:42:28,102 - INFO -   Project: b.1eea4119-3553-4167-b93d-3a3d5d07d33d
+2025-11-20 19:42:28,102 - INFO -   Mode: [ENHANCED] Async (Optimized)
+2025-11-20 19:42:28,103 - INFO -   [SYNC] Executing full sync with cache-enabled manager...
+2025-11-20 19:42:28,103 - INFO -   [CACHE] Cache enabled: True
+2025-11-20 19:42:28,103 - INFO -   [CACHE] Max size: 5000 entries
+2025-11-20 19:42:28,103 - INFO -   [CACHE] TTL: 3600s
+2025-11-20 19:42:28,103 - INFO -   [SCHEMA] Skipping account schema check (assuming already synced)
+2025-11-20 19:42:28,103 - INFO -   [INFO] If sync fails, please run: python database_sql/test_account_sync.py
+2025-11-20 19:42:28,103 - INFO -   [SYNC] Starting synchronization (this may take several minutes)...
+2025-11-20 19:42:28,103 - INFO -   [INFO] Output will be displayed in real-time
+2025-11-20 19:47:13,285 - INFO - ================================================================================
+2025-11-20 19:47:13,286 - INFO - ENHANCED REVIEW SYNC TEST - Async + Cache + UPSERT Optimization
+2025-11-20 19:47:13,286 - INFO - ================================================================================
+2025-11-20 19:47:13,286 - INFO - Project ID: b.1eea4119-3553-4167-b93d-3a3d5d07d33d
+2025-11-20 19:47:13,286 - INFO - Max Concurrent: 10
+2025-11-20 19:47:13,286 - INFO - Cache Enabled: True
+2025-11-20 19:47:13,286 - INFO - Cache TTL: 3600s
+2025-11-20 19:47:13,286 - INFO - Cache Max Size: 5000 entries
+2025-11-20 19:47:13,286 - INFO - Batch Size: 100
+2025-11-20 19:47:13,286 - INFO - Test Start: 2025-11-20 19:47:13
+2025-11-20 19:47:13,287 - INFO - [STEP 1/7] Checking authentication status...
+2025-11-20 19:47:13,287 - INFO -   Description: Verify OAuth token is valid and not expired
+2025-11-20 19:47:13,688 - INFO - [AUTH] Successfully obtained access token
+2025-11-20 19:47:13,688 - INFO - [AUTH] Token expires in 11 minutes
+2025-11-20 19:47:13,688 - INFO -   [OK] Completed in 0.40s
+2025-11-20 19:47:13,688 - INFO - 
+[STEP 2/7] Initializing enhanced sync modules...
+2025-11-20 19:47:13,688 - INFO -   Description: Import EnhancedReviewSyncManager and create connections
+2025-11-20 19:47:13,688 - INFO -   Features:
+2025-11-20 19:47:13,688 - INFO -     - Asyncio + aiohttp for concurrent API calls
+2025-11-20 19:47:13,688 - INFO -     - Cachetools memory caching layer
+2025-11-20 19:47:13,688 - INFO -     - PostgreSQL UPSERT optimization
+2025-11-20 19:47:13,688 - INFO -     - Circuit breaker pattern
+2025-11-20 19:47:13,689 - INFO -     - Performance monitoring
+2025-11-20 19:47:13,689 - INFO -     - Note: Account sync functionality removed (use account_sync.py)
+2025-11-20 19:47:14,004 - INFO -   [OK] EnhancedReviewSyncManager initialized (review sync only)
+2025-11-20 19:47:14,004 - INFO -   [OK] Max concurrent: 10
+2025-11-20 19:47:14,004 - INFO -   [OK] Cache enabled: True
+2025-11-20 19:47:14,004 - INFO -   [OK] Cache max size: 5000
+2025-11-20 19:47:14,005 - INFO -   [OK] Batch size: 100
+2025-11-20 19:47:14,005 - INFO -   [OK] Database connection established
+2025-11-20 19:47:14,005 - INFO -   [INFO] Account sync functionality removed from this manager
+2025-11-20 19:47:14,005 - INFO -   [OK] Completed in 0.32s
+2025-11-20 19:47:14,005 - INFO - 
+[STEP 3/7] Checking cache status...
+2025-11-20 19:47:14,005 - INFO -   Description: Verify memory cache availability and configuration
+2025-11-20 19:47:14,005 - INFO -   [OK] Memory cache is enabled
+2025-11-20 19:47:14,005 - INFO -   [OK] Cache TTL: 3600s
+2025-11-20 19:47:14,005 - INFO -   [OK] Cache Max Size: 5000 entries
+2025-11-20 19:47:14,005 - INFO -   [OK] Current Size: 0 entries
+2025-11-20 19:47:14,005 - INFO -   [OK] Usage: 0.0%
+2025-11-20 19:47:14,005 - INFO -   [OK] Completed in 0.00s
+2025-11-20 19:47:14,005 - INFO - 
+[STEP 4/7] Running enhanced async synchronization...
+2025-11-20 19:47:14,005 - INFO -   Description: Clean database, recreate schema, async parallel sync
+2025-11-20 19:47:14,006 - INFO -   Sub-steps:
+2025-11-20 19:47:14,006 - INFO -     4.1 - Drop all review tables, views, and enum types
+2025-11-20 19:47:14,006 - INFO -     4.2 - Recreate schema from review_system_schema.sql
+2025-11-20 19:47:14,006 - INFO -     4.3 - [ASYNC] Fetch all workflows from ACC API
+2025-11-20 19:47:14,006 - INFO -     4.4 - [ASYNC] Fetch all reviews with smart pagination
+2025-11-20 19:47:14,006 - INFO -     4.5 - [ASYNC] Fetch file versions and progress for all reviews
+2025-11-20 19:47:14,006 - INFO -     4.6 - [CANDIDATES] Create review_step_candidates configurations
+2025-11-20 19:47:14,006 - INFO -     4.7 - [BATCH UPSERT] Bulk insert/update into database
+2025-11-20 19:47:14,006 - INFO -   Project: b.1eea4119-3553-4167-b93d-3a3d5d07d33d
+2025-11-20 19:47:14,006 - INFO -   Mode: [ENHANCED] Async (Optimized)
+2025-11-20 19:47:14,008 - INFO -   [SYNC] Executing full sync with cache-enabled manager...
+2025-11-20 19:47:14,008 - INFO -   [CACHE] Cache enabled: True
+2025-11-20 19:47:14,008 - INFO -   [CACHE] Max size: 5000 entries
+2025-11-20 19:47:14,008 - INFO -   [CACHE] TTL: 3600s
+2025-11-20 19:47:14,008 - INFO -   [SCHEMA] Skipping account schema check (assuming already synced)
+2025-11-20 19:47:14,008 - INFO -   [INFO] If sync fails, please run: python database_sql/test_account_sync.py
+2025-11-20 19:47:14,008 - INFO -   [SYNC] Starting synchronization (this may take several minutes)...
+2025-11-20 19:47:14,008 - INFO -   [INFO] Output will be displayed in real-time

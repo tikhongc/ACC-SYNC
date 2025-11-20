@@ -2829,12 +2829,26 @@ class EnhancedReviewSyncManager:
                 return
 
             # 1. 找出已執行步驟的最大 step_order
-            # ✅ 使用 idx + 1 作為 fallback，與 _sync_progress_with_template_mapping 保持一致
+            # ✅ 從數據庫查詢已插入的 review_progress，找出實際的最大 step_order
+            # 這比依賴 API 返回的數據更可靠
             max_executed_order = 0
-            for idx, step_data in enumerate(executed_steps):
-                step_order = step_data.get('stepOrder') or step_data.get('order') or (idx + 1)
-                if step_order > max_executed_order:
-                    max_executed_order = step_order
+            try:
+                with self.da.get_cursor() as cursor:
+                    cursor.execute("""
+                        SELECT COALESCE(MAX(step_order), 0) as max_order
+                        FROM review_progress
+                        WHERE review_id = %s
+                    """, (review_id,))
+                    result = cursor.fetchone()
+                    if result:
+                        max_executed_order = result['max_order'] if isinstance(result, dict) else result[0]
+            except Exception as e:
+                print(f"  [CURRENT_STEP] Error querying max step_order: {e}")
+                # Fallback: 從 API 數據計算
+                for step_data in executed_steps:
+                    step_order = step_data.get('stepOrder') or step_data.get('order', 0)
+                    if step_order > max_executed_order:
+                        max_executed_order = step_order
 
             # 2. 當前活躍步驟應該是下一個
             current_step_order = max_executed_order + 1
