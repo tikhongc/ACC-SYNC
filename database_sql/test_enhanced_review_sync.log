@@ -2798,3 +2798,38 @@
 2025-11-20 19:50:49,594 - INFO -   [INFO] If sync fails, please run: python database_sql/test_account_sync.py
 2025-11-20 19:50:49,594 - INFO -   [SYNC] Starting synchronization (this may take several minutes)...
 2025-11-20 19:50:49,594 - INFO -   [INFO] Output will be displayed in real-time
+2025-11-20 19:54:51,166 - INFO -   [OK] Full sync completed successfully
+2025-11-20 19:54:51,167 - INFO -   [OK] Completed in 241.57s
+2025-11-20 19:54:51,167 - INFO - 
+[STEP 5/7] Generating performance analysis...
+2025-11-20 19:54:51,167 - INFO -   Description: Analyze performance metrics and identify bottlenecks
+2025-11-20 19:54:51,167 - INFO -   [OK] Completed in 0.00s
+2025-11-20 19:54:51,167 - INFO - 
+[STEP 6/8] Verifying candidates configuration...
+2025-11-20 19:54:51,167 - INFO -   Description: Check review_step_candidates table and data integrity
+2025-11-20 19:54:54,623 - INFO -   [CANDIDATES] Table exists: True
+2025-11-20 19:54:54,624 - INFO -   [CANDIDATES] Total configurations: 71
+2025-11-20 19:54:54,624 - INFO -   [CANDIDATES] Configs with candidates: 71
+2025-11-20 19:54:54,624 - INFO -   [CANDIDATES] Reviews with configs: 15
+2025-11-20 19:54:54,624 - INFO -   [CANDIDATES] Source distribution: {'workflow_template': 71}
+2025-11-20 19:54:54,624 - INFO -   [CANDIDATES] Sample configurations:
+2025-11-20 19:54:54,624 - INFO -     Review 1 (test review 20-11...) - Step: 发起者
+2025-11-20 19:54:54,624 - INFO -       Source: workflow_template, Users: 3, Roles: 0, Companies: 0
+2025-11-20 19:54:54,624 - INFO -     Review 1 (test review 20-11...) - Step: 初始审阅 1
+2025-11-20 19:54:54,624 - INFO -       Source: workflow_template, Users: 4, Roles: 0, Companies: 0
+2025-11-20 19:54:54,624 - INFO -     Review 1 (test review 20-11...) - Step: 初始审阅 2
+2025-11-20 19:54:54,624 - INFO -       Source: workflow_template, Users: 3, Roles: 0, Companies: 2
+2025-11-20 19:54:54,624 - INFO -     Review 1 (test review 20-11...) - Step: 最终审阅
+2025-11-20 19:54:54,624 - INFO -       Source: workflow_template, Users: 3, Roles: 1, Companies: 0
+2025-11-20 19:54:54,624 - INFO -     Review 2 (test 5-04...) - Step: 发起者
+2025-11-20 19:54:54,624 - INFO -       Source: workflow_template, Users: 1, Roles: 0, Companies: 0
+2025-11-20 19:54:54,625 - INFO -   [OK] Completed in 3.46s
+2025-11-20 19:54:54,625 - INFO - 
+[STEP 7/8] Analyzing synchronization results...
+2025-11-20 19:54:54,625 - INFO -   Description: Calculate statistics and identify issues
+2025-11-20 19:54:54,625 - INFO -   [OK] Completed in 0.00s
+2025-11-20 19:54:54,625 - INFO - 
+[STEP 8/8] Generating comprehensive test report...
+2025-11-20 19:54:54,625 - INFO -   Description: Create JSON report with all metrics
+2025-11-20 19:54:54,625 - INFO -   [OK] Completed in 0.00s
+2025-11-20 19:54:54,626 - INFO - [SAVE] Results saved to: test_enhanced_review_sync_1763639694.json
