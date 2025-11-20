@@ -2874,6 +2874,8 @@ class EnhancedReviewSyncManager:
             existing_progress = self.da.get_review_progress_by_template_step(review_id, template_step_id)
             if existing_progress:
                 print(f"  [CURRENT_STEP] Progress already exists for step {current_step_order} (template_id={template_step_id})")
+                # ✅ 即使記錄已存在，也要確保 current_step_number 正確
+                self._update_review_current_step(review_id, current_step_order, template_step_id, template_step.get('name'))
                 return
 
             # 6. 創建當前步驟的 progress 記錄
@@ -2917,6 +2919,10 @@ class EnhancedReviewSyncManager:
                 else:
                     inserted_count = self.da.batch_insert_review_steps([progress_data])
                     print(f"  [CURRENT_STEP] ✓ Created current step progress (inserted={inserted_count})")
+
+                # ✅ 更新 reviews.current_step_number 以便前端 API 能正確找到當前步驟
+                self._update_review_current_step(review_id, current_step_order, template_step_id, template_step.get('name'))
+
             except Exception as e:
                 print(f"✗ [ERROR] Failed to create current step progress: {e}")
                 raise
@@ -2925,6 +2931,30 @@ class EnhancedReviewSyncManager:
             print(f"✗ [ERROR] Failed in _create_current_step_progress: {e}")
             import traceback
             traceback.print_exc()
+
+    def _update_review_current_step(self, review_id: int, step_order: int, step_id: str, step_name: str) -> None:
+        """
+        更新 reviews 表的 current_step_number, current_step_id, current_step_name
+
+        Args:
+            review_id: 評審ID
+            step_order: 當前步驟順序
+            step_id: 當前步驟ID
+            step_name: 當前步驟名稱
+        """
+        try:
+            with self.da.get_cursor() as cursor:
+                cursor.execute("""
+                    UPDATE reviews
+                    SET current_step_number = %s,
+                        current_step_id = %s,
+                        current_step_name = %s,
+                        updated_at = CURRENT_TIMESTAMP
+                    WHERE id = %s
+                """, (step_order, step_id, step_name, review_id))
+                print(f"  [CURRENT_STEP] ✓ Updated reviews.current_step_number = {step_order}")
+        except Exception as e:
+            print(f"  [CURRENT_STEP] Warning: Failed to update current_step_number: {e}")
 
     def _create_review_step_candidates_from_cache(self, review_id: int, steps: List[Dict], workflow_steps_config: List[Dict]) -> None:
         """

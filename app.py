@@ -75,24 +75,7 @@ app.config['SESSION_COOKIE_SAMESITE'] = getattr(config, 'SESSION_COOKIE_SAMESITE
 app.config['SESSION_COOKIE_SECURE'] = getattr(config, 'SESSION_COOKIE_SECURE', True)
 
 # 导入各个模块的蓝图
-from api_modules.auth_api import auth_bp
-from api_modules.forms_api import forms_bp
-from api_modules.data_connector_api import data_connector_bp
-from api_modules.reviews_api import reviews_bp
-from api_modules.rfis_api import rfis_bp
-from api_modules.autospecs_packages_api import autospecs_packages_bp
-from api_modules.file_sync_api import file_sync_bp
-from api_modules.data_management_api import data_management_bp
-from api_modules.webhook_api import webhook_bp
-from api_modules.download_config_api import download_config_bp
-from api_modules.permissions_sync_api import permissions_sync_bp
-from api_modules.users_api import users_bp
-from api_modules.custom_attributes_api import custom_attributes_bp
-from api_modules.account_api import account_bp
-from api_modules.issues_api import issues_bp
-from api_modules.submittals_api import submittals_bp, test_submittals_bp
-from api_modules.system_status_api import system_status_bp
-from api_modules.review_workflow_api import workflows_bp
+
 
 # 导入文件管理模块蓝图 (从app2.py迁移)
 from api_modules.file_CDE_function import file_tree_bp, forge_viewer_bp
@@ -153,28 +136,6 @@ except ImportError as e:
 
 # Flask应用已在上面创建并配置
 
-# 注册蓝图
-app.register_blueprint(auth_bp)
-app.register_blueprint(forms_bp)
-app.register_blueprint(data_connector_bp)
-app.register_blueprint(reviews_bp)
-app.register_blueprint(rfis_bp)
-app.register_blueprint(autospecs_packages_bp)
-app.register_blueprint(file_sync_bp)
-app.register_blueprint(data_management_bp)
-app.register_blueprint(webhook_bp)
-app.register_blueprint(download_config_bp)
-app.register_blueprint(permissions_sync_bp)
-app.register_blueprint(users_bp)
-app.register_blueprint(custom_attributes_bp)
-app.register_blueprint(account_bp)
-app.register_blueprint(issues_bp)
-app.register_blueprint(submittals_bp)
-app.register_blueprint(system_status_bp)
-app.register_blueprint(workflows_bp)
-
-# 注册测试端点蓝图
-app.register_blueprint(test_submittals_bp)
 
 # 注册从app2.py迁移的蓝图
 app.register_blueprint(file_tree_bp)  # 文件树管理API
