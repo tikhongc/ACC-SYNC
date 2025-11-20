@@ -505,6 +505,68 @@ def start_auth():
         return f"Error in authentication start: {str(e)}", 500
 
 
+@app.route('/api/auth/callback')
+def auth_callback():
+    """
+    Autodesk 登录回调，交换授权码为访问令牌
+    """
+    safe_print("[AUTH] Callback endpoint called")
+    try:
+        import requests
+        import time
+        from flask import request as flask_request, session as flask_session
+
+        # 1. 获取 code/state
+        code = flask_request.args.get('code')
+        state = flask_request.args.get('state')
+
+        if not code:
+            return jsonify({"error": "No authorization code provided"}), 400
+
+        # 如需 CSRF 防护，可启用以下检查
+        # expected_state = flask_session.get('oauth_state')
+        # if expected_state and expected_state != state:
+        #     return jsonify({"error": "Invalid state parameter"}), 400
+
+        token_url = "https://developer.api.autodesk.com/authentication/v2/token"
+        payload = {
+            'grant_type': 'authorization_code',
+            'code': code,
+            'client_id': config.CLIENT_ID,
+            'client_secret': config.CLIENT_SECRET,
+            'redirect_uri': config.CALLBACK_URL
+        }
+
+        safe_print("[AUTH] Exchanging code for token...")
+        response = requests.post(token_url, data=payload)
+
+        if response.status_code != 200:
+            safe_print(f"[AUTH] Token exchange failed: {response.text}")
+            # 尽量返回 JSON 细节便于前端调试
+            try:
+                return jsonify({"error": "Failed to exchange token", "details": response.json()}), 400
+            except Exception:
+                return jsonify({"error": "Failed to exchange token", "raw": response.text}), 400
+
+        # 写入 Session（Session 已定向到 /tmp，可在 Vercel 工作）
+        token_data = response.json()
+        access_token = token_data.get('access_token')
+        refresh_token = token_data.get('refresh_token')
+        expires_in = token_data.get('expires_in', 3599)
+
+        flask_session['access_token'] = access_token
+        flask_session['refresh_token'] = refresh_token
+        flask_session['token_expires_at'] = time.time() + expires_in
+
+        safe_print("[AUTH] Token stored in session, redirecting to frontend...")
+        frontend_url = getattr(config, 'FRONTEND_ORIGIN', '/')
+        return redirect(f"{frontend_url}/login/success")
+
+    except Exception as e:
+        safe_print(f"[AUTH] Error in /api/auth/callback: {str(e)}")
+        return jsonify({"error": "Internal server error during callback", "message": str(e)}), 500
+
+
 if __name__ == '__main__':
     import signal
     import utils
