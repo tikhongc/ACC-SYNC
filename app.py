@@ -7,6 +7,7 @@ ACC 表单同步 PoC - 重构后的主应用文件
 
 import sys
 import os
+import tempfile
 
 # 设置控制台编码以支持Unicode字符
 if sys.platform.startswith('win'):
@@ -19,7 +20,7 @@ if sys.platform.startswith('win'):
         # 如果失败，使用ASCII安全模式
         pass
 
-from flask import Flask, redirect, jsonify, request
+from flask import Flask, redirect, jsonify, request, send_from_directory
 from flask_cors import CORS
 import config
 
@@ -37,15 +38,17 @@ def safe_print(message):
 app = Flask(__name__)
 app.secret_key = config.SECRET_KEY if hasattr(config, 'SECRET_KEY') else 'your-secret-key-change-in-production'
 app.config['SESSION_TYPE'] = 'filesystem'
+# Vercel 的可写目录只有 /tmp，强制会话文件写入该处
+app.config['SESSION_FILE_DIR'] = os.path.join(tempfile.gettempdir(), 'flask_session')
 app.config['SESSION_PERMANENT'] = False
 
 # 初始化Flask-Session
 try:
     from flask_session import Session
     Session(app)
-    safe_print("Flask-Session initialized successfully")
+    safe_print(f"Flask-Session initialized (Dir: {app.config['SESSION_FILE_DIR']})")
 except ImportError:
-    safe_print("Warning: Flask-Session not available, using default session handling")
+    safe_print("Warning: Flask-Session not available")
     pass
 
 # 配置CORS - 允许所有本地开发源访问（开发环境）
@@ -386,20 +389,22 @@ def get_monitoring_config():
         }
     })
 
-# Vue前端路由
-@app.route('/api')
+# 后端首页：显示运行状态
 @app.route('/')
-def vue_app():
-    """Vue前端应用 - 根据环境选择开发或生产版本"""
-    import os
-    
-    # 生产环境：检查构建后的Vue文件
-    if os.path.exists('static/dist/index.html'):
-        return app.send_static_file('dist/index.html')
-    
-    # 开发/分域：重定向到配置的前端域名
-    frontend_origin = getattr(config, 'FRONTEND_ORIGIN', 'http://localhost:3000')
-    return redirect(f"{frontend_origin}/")
+def index():
+    """後端首頁：只顯示 API 執行狀態"""
+    return jsonify({
+        "status": "online",
+        "message": "ACC-SYNC Python Backend is Running",
+        "version": "1.0.0"
+    })
+
+
+# 如果需要跳轉到前端，可啟用以下方案 B
+# @app.route('/')
+# def index_redirect():
+#     frontend_url = os.environ.get('FRONTEND_ORIGIN', 'https://your-frontend.vercel.app')
+#     return redirect(frontend_url)
 
 # OAuth认证入口
 @app.route('/auth/start')
