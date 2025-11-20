@@ -504,7 +504,43 @@ def start_auth():
         traceback.print_exc()
         return f"Error in authentication start: {str(e)}", 500
 
+@app.route('/api/auth/check')
+def check_auth_status():
+    """
+    前端用來檢查目前是否已登入 (檢查 Session)
+    """
+    from flask import session, jsonify
+    import time
 
+    safe_print("[AUTH] Checking auth status...")
+
+    # 1. 檢查 Session 裡有沒有 Token
+    access_token = session.get('access_token')
+    expires_at = session.get('token_expires_at', 0)
+
+    # 2. 檢查 Token 是否過期
+    is_authenticated = False
+    if access_token and time.time() < expires_at:
+        is_authenticated = True
+    
+    # 3. 回傳狀態
+    if is_authenticated:
+        return jsonify({
+            "isAuthenticated": True,
+            "user": {
+                "name": "User", # 如果你有存使用者名稱，可以在這裡回傳
+                # "picture": session.get('user_picture') 
+            }
+        }), 200
+    else:
+        # 如果沒登入，回傳 401 或 200(isAuthenticated=False) 都可以，
+        # 根據你的前端邏輯，這裡回傳 401 會觸發前端跳轉登入
+        return jsonify({
+            "isAuthenticated": False,
+            "error": "Token expired or missing"
+        }), 401
+
+        
 @app.route('/api/auth/callback')
 def auth_callback():
     """
