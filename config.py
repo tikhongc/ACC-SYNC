@@ -9,9 +9,15 @@ import os
 #khalil test
 CLIENT_ID = os.getenv('AUTODESK_CLIENT_ID', 'yQBYQHFIEOMwXwen4lBauTmepwTntzIXOuSr9vMKJGRpqh7w')
 CLIENT_SECRET = os.getenv('AUTODESK_CLIENT_SECRET', 'PONH9545nWHJJUfVzvDzJe0MUoni1v5ov3PRHNz4Gy0h5WquHsaNTpe8wwsh3t6y')
+# config.py (保持這樣，不用硬改，讓它讀取環境變數)
+
+# 1. 回調網址：本地用 localhost，線上環境會讀取 AUTODESK_CALLBACK_URL
 CALLBACK_URL = os.getenv('AUTODESK_CALLBACK_URL', 'http://localhost:8080/api/auth/callback')
-# 前端來源（用於回調 postMessage/redirect），可在部署時設定，例如 https://app.example.com
+
+# 2. 前端來源：本地用 localhost:3000，線上環境會讀取 FRONTEND_ORIGIN
+# 這很重要！登入成功後，後端會跳轉回這個網址
 FRONTEND_ORIGIN = os.getenv('FRONTEND_ORIGIN', 'http://localhost:3000')
+
 # 更新scope权限，添加bucket相关权限以支持文件下载
 SCOPES = 'account:read account:write data:read data:write data:create viewables:read bucket:read bucket:create'
 
